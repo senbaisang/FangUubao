@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/id_item_btn_loan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_solid_shape"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:text="我能贷多少"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

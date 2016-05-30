@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomWoDeItemView" >
+        <attr name="my_title" format="string" />
+        <attr name="my_logo" format="reference" />
+    </declare-styleable>
+    
+    <declare-styleable name="CustomDoubleTextView" >
+        <attr name="my_top_title" format="string" />
+        <attr name="my_bottom_title" format="string" />
+    </declare-styleable>
+</resources>

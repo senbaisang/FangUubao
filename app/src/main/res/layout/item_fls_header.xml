@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingBottom="10dp">
+
+
+    <Button
+        android:id="@+id/id_fls_btn_sign"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/button_shape"
+        android:text="点此签到"
+        android:textColor="#33cc99"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/top_fulishe" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:text="优豆兑换豪礼，还包邮哦!"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tv"
+        android:layout_margin="10dp"
+        android:background="#999" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <com.sally.fanguubao.view.CustomTextView
+            android:id="@+id/id_fls_tv1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/score"
+            android:gravity="center_vertical"
+            android:text=" 我的优豆" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999" />
+
+        <com.sally.fanguubao.view.CustomTextView
+            android:id="@+id/id_fls_tv2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/score"
+            android:gravity="center_vertical"
+            android:text=" 我的优豆" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999" />
+
+        <com.sally.fanguubao.view.CustomTextView
+            android:id="@+id/id_fls_tv3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/score"
+            android:gravity="center_vertical"
+            android:text=" 我的优豆" />
+    </LinearLayout>
+
+
+</RelativeLayout>

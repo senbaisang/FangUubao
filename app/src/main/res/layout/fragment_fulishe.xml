@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eee">
+
+    <ListView
+        android:background="#eee"
+        android:id="@+id/id_fls_list_view"
+        android:layout_width="match_parent"
+        android:dividerHeight="6dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cacheColorHint="#0000"
+        android:listSelector="#0000"
+        android:scrollbars="none"
+        android:layout_height="0dp"
+        android:layout_weight="1"></ListView>
+</LinearLayout>

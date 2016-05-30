@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sally="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/user_bg"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/id_wd_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/uub_logo" />
+
+            <TextView
+                android:id="@+id/id_wd_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:layout_toRightOf="@+id/id_wd_avatar"
+                android:text="请登录"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/right_arrow" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/no_application" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="当前无申请"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <com.sally.fanguubao.view.CustomWoDeItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            sally:my_logo="@drawable/user_fq"
+            sally:my_title="常见问题"></com.sally.fanguubao.view.CustomWoDeItemView>
+
+        <com.sally.fanguubao.view.CustomWoDeItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            sally:my_logo="@drawable/user_ceo"
+            sally:my_title="CEO信箱"></com.sally.fanguubao.view.CustomWoDeItemView>
+
+        <com.sally.fanguubao.view.CustomWoDeItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            sally:my_logo="@drawable/user_share"
+            sally:my_title="推荐给好友"></com.sally.fanguubao.view.CustomWoDeItemView>
+
+        <com.sally.fanguubao.view.CustomWoDeItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            sally:my_logo="@drawable/user_like"
+            sally:my_title="给个好评"></com.sally.fanguubao.view.CustomWoDeItemView>
+
+        <com.sally.fanguubao.view.CustomWoDeItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            sally:my_logo="@drawable/user_cache"
+            sally:my_title="清空缓存"></com.sally.fanguubao.view.CustomWoDeItemView>
+
+        <com.sally.fanguubao.view.CustomWoDeItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            sally:my_logo="@drawable/user_about_us"
+            sally:my_title="关于我们"></com.sally.fanguubao.view.CustomWoDeItemView>
+    </LinearLayout>
+</ScrollView>

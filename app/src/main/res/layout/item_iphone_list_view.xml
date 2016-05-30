@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/id_iphone_item_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/d"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/id_iphone_item_name"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="iphone 6s 国行正品"
+        android:textSize="18sp"
+        android:textColor="#333"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/id_iphone_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全款 $5288元"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#666"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/id_iphone_item_fq_price"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="$440.67 * 12月"
+        android:textSize="16sp"
+        android:textColor="#595"
+        android:background="@drawable/btn_select_shape"/>
+</LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="#fff"
+    >
+
+    <ImageView
+        android:id="@+id/id_fq_item_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/id_fq_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_fq_item_iv"
+        android:layout_centerHorizontal="true"
+        android:text="维达"
+        android:textColor="#33cc99"
+        android:textSize="14sp" />
+
+</RelativeLayout>
