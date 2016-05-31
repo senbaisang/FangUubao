@@ -31,6 +31,9 @@
         <activity android:name=".activity.FenQiIphoneProductActivity" />
         <activity android:name=".activity.FenQiMoreProductActivity" />
         <activity android:name=".activity.FenQiCarHotActivity" />
+        <activity android:name=".activity.FenQiCarCategoriesActivity" />
+        <activity android:name=".activity.FenQiCarCategoriesDetailActivity" />
+        <activity android:name=".activity.FenQiJdDetailActivity" />
     </application>
 
 </manifest>

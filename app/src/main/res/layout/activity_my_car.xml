@@ -117,13 +117,15 @@
                 android:textColor="#333"
                 android:textSize="18sp" />
 
-            <LinearLayout
-                android:padding="10dp"
-                android:background="#fff"
-                android:id="@+id/id_fq_car_ll_brands"
+            <com.sally.fanguubao.view.NOScrollGridView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"></LinearLayout>
+                android:id="@+id/id_fq_car_gd_brands"
+                android:background="#fff"
+                android:padding="10dp"
+                android:verticalSpacing="5dp"
+                android:numColumns="5"
+                ></com.sally.fanguubao.view.NOScrollGridView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

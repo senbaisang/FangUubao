@@ -28,7 +28,7 @@
                 android:paddingTop="10dp">
 
                 <TextView
-                    android:id="@+id/id_fq_car_hot_name"
+                    android:id="@+id/id_fq_car_brand_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="北汽新能源"
@@ -36,16 +36,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/id_fq_car_hot_attention"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="注意：本车享受国家补贴"
-                    android:textColor="#333"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/id_fq_car_hot_factory_price"
+                    android:id="@+id/id_fq_car_brand_factory_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -55,7 +46,7 @@
 
 
                 <TextView
-                    android:id="@+id/id_fq_car_hot_uub_price"
+                    android:id="@+id/id_fq_car_brand_uub_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -64,7 +55,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/id_fq_car_hot_payment"
+                    android:id="@+id/id_fq_car_brand_payment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -86,7 +77,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/id_fq_car_hot_fq_price"
+                        android:id="@+id/id_fq_car_brand_fq_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$35"
@@ -123,7 +114,7 @@
                         android:textSize="18sp" />
 
                     <LinearLayout
-                        android:id="@+id/id_fq_car_hot_ll_color"
+                        android:id="@+id/id_fq_car_brand_ll_color"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -138,7 +129,7 @@
                         android:textSize="18sp" />
 
                     <com.sally.fanguubao.view.NOScrollGridView
-                        android:id="@+id/id_fq_car_hot_gd_model"
+                        android:id="@+id/id_fq_car_brand_gd_model"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:verticalSpacing="5dp"
@@ -165,22 +156,8 @@
                     android:textColor="#333"
                     android:textSize="18sp" />
 
-                <LinearLayout
-                    android:id="@+id/id_fq_car_hot_images"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"></LinearLayout>
-
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="查看更多介绍"
-                    android:textColor="#333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/id_fq_car_hot_wangyi"
+                    android:id="@+id/id_fq_car_brand_wangyi"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +171,7 @@
                     android:textColor="#fff"
                     android:textSize="14sp" />
                 <TextView
-                    android:id="@+id/id_fq_car_hot_sina"
+                    android:id="@+id/id_fq_car_brand_sina"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -208,7 +185,7 @@
                     android:textColor="#fff"
                     android:textSize="14sp" />
                 <TextView
-                    android:id="@+id/id_fq_car_hot_souhu"
+                    android:id="@+id/id_fq_car_brand_souhu"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

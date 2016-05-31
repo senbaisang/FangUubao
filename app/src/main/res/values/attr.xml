@@ -9,4 +9,8 @@
         <attr name="my_top_title" format="string" />
         <attr name="my_bottom_title" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="ViewPagerIndicator" >
+        <attr name="visable_tab_count" format="integer" />
+    </declare-styleable>
 </resources>

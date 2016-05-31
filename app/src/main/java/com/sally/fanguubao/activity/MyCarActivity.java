@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FenQiCarProduct;
 import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.util.GsonUtil;
+import com.sally.fanguubao.view.NOScrollGridView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -37,7 +42,7 @@ public class MyCarActivity extends AppCompatActivity {
     private TextView mPrice;
     private TextView mFqPrice;
     private LinearLayout mRx;
-    private LinearLayout mBrandsLogo;
+    private NOScrollGridView mBrandsLogo;
 
     private FenQiCarProduct carProduct;
     private FenQiCarProduct.Recommands recommand;
@@ -59,15 +64,32 @@ public class MyCarActivity extends AppCompatActivity {
         mPrice.setText(recommand.getPrice() + "");
         mFqPrice.setText(Constant.REN_MIN_BI + new DecimalFormat("#.##").format(recommand.getPrice() / 12) + " * 12月");
 
-        for(int i=0; i<brands.size(); i++) {
-            ImageView iv = new ImageView(this);
-            UrlImageViewHelper.setUrlDrawable(iv, brands.get(i).getLogo().getUrl(), R.drawable.b);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.leftMargin = 10;
-            lp.rightMargin = 10;
-            iv.setLayoutParams(lp);
-            mBrandsLogo.addView(iv);
-        }
+        /*
+         * 底部各种品牌logo的视图
+         */
+        mBrandsLogo.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return brands.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return brands.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                ImageView iv = new ImageView(MyCarActivity.this);
+                UrlImageViewHelper.setUrlDrawable(iv, brands.get(position).getLogo().getUrl(), R.drawable.b);
+                return iv;
+            }
+        });
     }
 
     private void initData() {
@@ -93,13 +115,13 @@ public class MyCarActivity extends AppCompatActivity {
         mPrice = (TextView) findViewById(R.id.id_fq_car_price);
         mFqPrice = (TextView) findViewById(id_fq_car_fq_price);
         mRx = (LinearLayout) findViewById(R.id.id_fq_car_rx);
-        mBrandsLogo = (LinearLayout) findViewById(R.id.id_fq_car_ll_brands);
-        mBrandsLogo.setOrientation(LinearLayout.HORIZONTAL);
-        mBrandsLogo.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        mBrandsLogo.setPadding(10, 2, 10, 2);
+        mBrandsLogo = (NOScrollGridView) findViewById(R.id.id_fq_car_gd_brands);
     }
 
     private void initEvent() {
+        /*
+         * 热销车辆点击事件
+         */
         mRx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +129,18 @@ public class MyCarActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(Constant.FENQI_CAR_HOT_PRODUCT, recommand);
                 intent.putExtra(Constant.FENQI_CAR_HOT_BUNDLE, bundle);
+                startActivity(intent);
+            }
+        });
+
+        /*
+         * 底部品牌logo的点击事件
+         */
+        mBrandsLogo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MyCarActivity.this, FenQiCarCategoriesActivity.class);
+                intent.putExtra(Constant.FENQI_CAR_BRAND_PRODUCT_ID, String.valueOf(brands.get(position).getId()));
                 startActivity(intent);
             }
         });

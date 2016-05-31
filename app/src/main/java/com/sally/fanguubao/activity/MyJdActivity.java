@@ -1,5 +1,6 @@
 package com.sally.fanguubao.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,7 +44,8 @@ public class MyJdActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(MyJdActivity.this, FenQiJdDetailActivity.class);
+                startActivity(intent);
             }
         });
     }

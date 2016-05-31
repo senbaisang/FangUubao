@@ -2,6 +2,7 @@ package com.sally.fanguubao.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sally.fanguubao.bean.FenQiCarBrandsProduct;
 import com.sally.fanguubao.bean.FenQiCarProduct;
 import com.sally.fanguubao.bean.FenQiIphoneProduct;
 import com.sally.fanguubao.bean.FenQiJdCategories;
@@ -35,13 +36,24 @@ public class GsonUtil {
     }
 
     /**
-     * 分期 － car 数据
+     * 分期 － car 数据 ； 热销 ＋ 各种品牌信息
      * @param str
      * @return
      */
     public static FenQiCarProduct fenQiCarJson(String str) {
         FenQiCarProduct product = new Gson().fromJson(str, new TypeToken<FenQiCarProduct>() {}.getType());
         return product;
+    }
+
+    /**
+     * 分期 － car 数据 ：各种品牌的详细信息
+     *
+     * @param str
+     * @return
+     */
+    public static List<FenQiCarBrandsProduct> fenQiCarBrandsProducts(String str) {
+        List<FenQiCarBrandsProduct> lists = new Gson().fromJson(str, new TypeToken<List<FenQiCarBrandsProduct>>() {}.getType());
+        return lists;
     }
 
     /**
