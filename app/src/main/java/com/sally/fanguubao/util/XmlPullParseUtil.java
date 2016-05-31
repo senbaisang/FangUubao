@@ -1,6 +1,6 @@
 package com.sally.fanguubao.util;
 
-import android.util.Log;
+import com.sally.fanguubao.bean.ProductImage;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;

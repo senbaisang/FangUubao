@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.activity.FuLiSheProductActivity;
@@ -41,6 +43,14 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
     private FuLiSheListViewAdapter mFuLiSheListViewAdapter;
 
     /**
+     * 顶部点击时间
+     */
+    private Button mSign;
+    private CustomTextView mDou;
+    private CustomTextView mGetDou;
+    private CustomTextView mFuLi;
+
+    /**
      * 福利社的数据
      */
     private List<FuLiSheProduct> mLists;
@@ -69,6 +79,11 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
         mTv3 = (CustomTextView) headerView.findViewById(R.id.id_fls_tv3);
         mListView = (ListView) view.findViewById(R.id.id_fls_list_view);
 
+        mSign = (Button) headerView.findViewById(R.id.id_fls_btn_sign);
+        mDou = (CustomTextView) headerView.findViewById(R.id.id_fls_tv1);
+        mGetDou = (CustomTextView) headerView.findViewById(R.id.id_fls_tv2);
+        mFuLi = (CustomTextView) headerView.findViewById(R.id.id_fls_tv3);
+
         // 第三个参数，控制headerView是否可以被selected
         mListView.addHeaderView(headerView, null, false);
     }
@@ -94,6 +109,11 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
         mTv2.setOnClickListener(this);
         mTv3.setOnClickListener(this);
 
+        mSign.setOnClickListener(this);
+        mDou.setOnClickListener(this);
+        mGetDou.setOnClickListener(this);
+        mFuLi.setOnClickListener(this);
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -110,13 +130,21 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_fls_btn_sign:
+                showMsg("签到");
                 break;
             case R.id.id_fls_tv1:
+                showMsg("我的优豆");
                 break;
             case R.id.id_fls_tv2:
+                showMsg("赚取优豆");
                 break;
             case R.id.id_fls_tv3:
+                showMsg("我的福利");
                 break;
         }
+    }
+
+    public void showMsg(String text) {
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 }

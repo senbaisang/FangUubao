@@ -30,6 +30,7 @@
 
         <activity android:name=".activity.FenQiIphoneProductActivity" />
         <activity android:name=".activity.FenQiMoreProductActivity" />
+        <activity android:name=".activity.FenQiCarHotActivity" />
     </application>
 
 </manifest>

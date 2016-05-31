@@ -14,26 +14,7 @@
             android:background="#eee"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="#fff">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/id_fq_more_view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </android.support.v4.view.ViewPager>
-
-                <LinearLayout
-                    android:id="@+id/id_fq_more_points"
-                    android:layout_width="match_parent"
-                    android:layout_height="24dp"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"></LinearLayout>
-            </RelativeLayout>
+           <include layout="@layout/item_good_banner_image" />
 
             <LinearLayout
                 android:layout_width="match_parent"

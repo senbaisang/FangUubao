@@ -1,13 +1,10 @@
 package com.sally.fanguubao.activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +16,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FuLiSheProduct;
 import com.sally.fanguubao.fragment.FuLiSheFragment;
-import com.sally.fanguubao.util.ProductImage;
+import com.sally.fanguubao.bean.ProductImage;
 import com.sally.fanguubao.util.XmlPullParseUtil;
 
 import java.util.ArrayList;
@@ -76,8 +73,8 @@ public class FuLiSheProductActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mViewPager = (ViewPager) findViewById(R.id.id_fls_product_view_pager);
-        mPoints = (LinearLayout) findViewById(R.id.id_fls_product_points);
+        mViewPager = (ViewPager) findViewById(R.id.id_good_banner_view_pager);
+        mPoints = (LinearLayout) findViewById(R.id.id_good_banner_points);
 
 
         mName = (TextView) findViewById(R.id.id_fls_product_name);

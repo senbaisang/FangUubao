@@ -73,7 +73,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/score"
             android:gravity="center_vertical"
-            android:text=" 我的优豆" />
+            android:text=" 赚取优豆" />
 
         <View
             android:layout_width="1dp"
@@ -87,7 +87,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/score"
             android:gravity="center_vertical"
-            android:text=" 我的优豆" />
+            android:text=" 我的福利" />
     </LinearLayout>
 
 

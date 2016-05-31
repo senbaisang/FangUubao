@@ -1,6 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:sally="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eee"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_top_mxfq" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/top_wd"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/top_car" />
+
+                <com.sally.fanguubao.view.CustomDoubleTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/top_wd"
+                    sally:my_bottom_title="提前圆您购车梦"
+                    sally:my_top_title="厂家直供价，4S店提车，免息分期还"></com.sally.fanguubao.view.CustomDoubleTextView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/id_fq_car_rx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="热销车辆"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:clickable="false"/>
+
+                <ImageView
+                    android:id="@+id/id_fq_car_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/ic_launcher"
+                    android:clickable="false"/>
+
+                <TextView
+                    android:id="@+id/id_fq_car_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="北汽新能源－EV系列"
+                    android:textColor="#333"
+                    android:textSize="14sp"
+                    android:clickable="false"/>
+
+                <TextView
+                    android:id="@+id/id_fq_car_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="全款 $8.69万"
+                    android:textColor="#666"
+                    android:textSize="12sp"
+                    android:clickable="false"/>
+
+                <TextView
+                    android:id="@+id/id_fq_car_fq_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_select_shape"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:text="23.9 * 12月"
+                    android:textColor="#595"
+                    android:textSize="12sp"
+                    android:clickable="false"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:padding="10dp"
+                android:text="品牌选择"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:padding="10dp"
+                android:background="#fff"
+                android:id="@+id/id_fq_car_ll_brands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"></LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

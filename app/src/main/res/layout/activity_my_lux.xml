@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:sally="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eee"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_top_mxfq" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/top_wd"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/top_lux" />
+
+                <com.sally.fanguubao.view.CustomDoubleTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/top_wd"
+                    sally:my_bottom_title="全网最低的价格，如今还能免息分期"
+                    sally:my_top_title="国美电器直供"></com.sally.fanguubao.view.CustomDoubleTextView>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/id_fq_lux_bag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/lux_bag" />
+
+            <ImageView
+                android:id="@+id/id_fq_lux_scarf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lux_scarf" />
+
+            <ImageView
+                android:id="@+id/id_fq_lux_glasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lux_glasses" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

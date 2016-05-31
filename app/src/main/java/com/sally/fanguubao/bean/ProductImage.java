@@ -1,4 +1,4 @@
-package com.sally.fanguubao.util;
+package com.sally.fanguubao.bean;
 
 import java.io.Serializable;
 

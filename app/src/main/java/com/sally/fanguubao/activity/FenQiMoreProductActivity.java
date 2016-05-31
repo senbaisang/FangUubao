@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +14,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FenQiIphoneProduct;
 import com.sally.fanguubao.util.Constant;
-import com.sally.fanguubao.util.ProductImage;
+import com.sally.fanguubao.bean.ProductImage;
 import com.sally.fanguubao.util.XmlPullParseUtil;
 
 import java.text.DecimalFormat;
@@ -29,6 +27,9 @@ import java.util.List;
  */
 public class FenQiMoreProductActivity extends AppCompatActivity {
 
+    /**
+     * 顶部轮播图变量
+     */
     private ViewPager mViewPager;
     private LinearLayout mPoints;
     private List<ImageView> mPointsImageViews;
@@ -70,8 +71,8 @@ public class FenQiMoreProductActivity extends AppCompatActivity {
         mLlDetails = (LinearLayout) findViewById(R.id.id_fenqi_more_product_details);
         mLlDetails.setOrientation(LinearLayout.VERTICAL);
 
-        mViewPager = (ViewPager) findViewById(R.id.id_fq_more_view_pager);
-        mPoints = (LinearLayout) findViewById(R.id.id_fq_more_points);
+        mViewPager = (ViewPager) findViewById(R.id.id_good_banner_view_pager);
+        mPoints = (LinearLayout) findViewById(R.id.id_good_banner_points);
 
         /*
          * 创建顶部轮播图

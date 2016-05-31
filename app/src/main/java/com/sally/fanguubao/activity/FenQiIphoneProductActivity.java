@@ -16,7 +16,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FenQiIphoneProduct;
 import com.sally.fanguubao.util.Constant;
-import com.sally.fanguubao.util.ProductImage;
+import com.sally.fanguubao.bean.ProductImage;
 import com.sally.fanguubao.util.XmlPullParseUtil;
 
 import java.text.DecimalFormat;
@@ -29,6 +29,9 @@ import java.util.List;
  */
 public class FenQiIphoneProductActivity extends AppCompatActivity {
 
+    /**
+     * 顶部轮播图变量
+     */
     private ViewPager mViewPager;
     private LinearLayout mPoints;
     private List<ImageView> mPointsImageViews;
@@ -80,8 +83,8 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
         mLlDetails = (LinearLayout) findViewById(R.id.id_fenqi_iphone_product_details);
         mLlDetails.setOrientation(LinearLayout.VERTICAL);
 
-        mViewPager = (ViewPager) findViewById(R.id.id_fq_iphone_view_pager);
-        mPoints = (LinearLayout) findViewById(R.id.id_fq_iphone_points);
+        mViewPager = (ViewPager) findViewById(R.id.id_good_banner_view_pager);
+        mPoints = (LinearLayout) findViewById(R.id.id_good_banner_points);
 
         /*
          * 创建顶部轮播图
