@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -67,7 +69,7 @@ public class FenQiFragment extends Fragment {
                 case RUNNING_MESSAGE:
                     mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
                     if(isRunning) {
-                        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 2000);
+                        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 3000);
                     }
                     break;
             }
@@ -92,7 +94,7 @@ public class FenQiFragment extends Fragment {
         initEvent();
 
         isRunning = true;
-        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 2000);
+        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 3000);
 
         return view;
     }
@@ -164,13 +166,14 @@ public class FenQiFragment extends Fragment {
             lp.rightMargin = 10;
             point.setLayoutParams(lp);
             point.setImageResource(R.drawable.point_selector);
-            mPoints.addView(point);
 
             if(i == 0) {
                 point.setEnabled(true);
             } else {
                 point.setEnabled(false);
             }
+
+            mPoints.addView(point);
         }
 
         // 将gridview按钮涉及到的activity全部加载进来
@@ -203,14 +206,35 @@ public class FenQiFragment extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(mBannerImageViews.get(position%mBannerImageViews.size()));
-            return mBannerImageViews.get(position%mBannerImageViews.size());
+            ImageView imageView = mBannerImageViews.get(position % mBannerImageViews.size());
+            ViewParent parent = imageView.getParent();
+            if(parent != null) {
+                ViewGroup parentGroup = (ViewGroup) parent;
+                parentGroup.removeView(imageView);
+            }
+            container.addView(imageView);
+            return imageView;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-            object = null;
+            /*
+             * 在这里移除子view，当手指活动过快时，会报错 ： IllegalStateException， The specified child already has a parent. You must call removeView() on the child's parent first
+             * 打印log发现：instantiateItem() 方法比 destoryItem() 方法调用的快又多，所以才会报错吧
+             */
+//            container.removeView((ImageView) object);
+        }
+
+        @Override
+        public void finishUpdate(ViewGroup container) {
+            int currentPosition = mViewPager.getCurrentItem();
+            if(currentPosition == 0) {
+                currentPosition = mBannerImageViews.size();
+                mViewPager.setCurrentItem(currentPosition, false);
+            } else if(currentPosition == Constant.BANNER_MAX_VALUE - 1) {
+                currentPosition = mBannerImageViews.size() - 1;
+                mViewPager.setCurrentItem(currentPosition, false);
+            }
         }
     }
 

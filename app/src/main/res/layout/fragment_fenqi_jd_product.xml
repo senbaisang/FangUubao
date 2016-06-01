@@ -4,11 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <TextView
+        android:id="@+id/id_fq_jd_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="空空如也艾~在等一阵子呗~"
+        android:textColor="#595"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+
     <ListView
-        android:id="@+id/id_fenqi_more_product_list_view"
+        android:id="@+id/id_fq_jd_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
         android:divider="#eee"
         android:dividerHeight="1dp"></ListView>
+
 </LinearLayout>

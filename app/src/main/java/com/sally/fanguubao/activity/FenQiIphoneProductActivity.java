@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.sally.fanguubao.R;
@@ -66,8 +67,8 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
 
     private void setData() {
         mTvName.setText(product.getName());
-        mTvPrice.setText(product.getPrice() + "");
-        mTvFqPrice.setText(new DecimalFormat("#.##").format(product.getPrice()));
+        mTvPrice.setText("原价：" + Constant.REN_MIN_BI + product.getPrice() + "");
+        mTvFqPrice.setText(new DecimalFormat("#.##").format(product.getPrice() / 12));
         mTvRemark.setText(product.getRemark());
     }
 
@@ -157,7 +158,6 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             iv.setLayoutParams(lp);
             mLlDetails.addView(iv);
-            Log.e("好几个图片把", detailsUrl.get(i).getSrc() + "=========" + i);
         }
     }
 
@@ -215,5 +215,29 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
                 object = null;
             }
         });
+
+        /*
+         * 颜色 和 型号 的点击事件
+         */
+        for(int i=0; i<mLlColor.getChildCount(); i++) {
+            final TextView view = (TextView) mLlColor.getChildAt(i);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(FenQiIphoneProductActivity.this, view.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        for(int i=0; i<mLlModel.getChildCount(); i++) {
+            final TextView view = (TextView) mLlModel.getChildAt(i);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String[] value = view.getText().toString().split(":");
+                    mTvPrice.setText("原价：" + Constant.REN_MIN_BI + value[1]);
+                    mTvFqPrice.setText(new DecimalFormat("#.##").format(Integer.valueOf(value[1])/12) + "");
+                }
+            });
+        }
     }
 }

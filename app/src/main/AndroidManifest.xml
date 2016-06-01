@@ -34,6 +34,8 @@
         <activity android:name=".activity.FenQiCarCategoriesActivity" />
         <activity android:name=".activity.FenQiCarCategoriesDetailActivity" />
         <activity android:name=".activity.FenQiJdDetailActivity" />
+        <activity android:name=".activity.FenQiLuxDetailActivity" />
+        <activity android:name=".activity.FenQiLuxProductShowActivity" />
     </application>
 
 </manifest>

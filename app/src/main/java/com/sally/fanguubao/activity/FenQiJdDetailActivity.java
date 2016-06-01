@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.sally.fanguubao.R;
-import com.sally.fanguubao.fragment.DemoFragment;
+import com.sally.fanguubao.bean.FenQiJdCategories;
+import com.sally.fanguubao.fragment.FenQiJdProductFragment;
+import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.view.ViewPagerIndicator;
 
 import java.util.ArrayList;
@@ -23,9 +25,15 @@ public class FenQiJdDetailActivity extends AppCompatActivity {
     private ViewPagerIndicator mIndicator;
     private ViewPager mViewPager;
 
-    private List<String> mTitles = Arrays.asList("标题1", "标题2", "标题3", "标题4", "标题5", "标题6");
-    private List<DemoFragment> mFragments = new ArrayList<>();
+    /**
+     * 标题栏
+     */
+    private List<String> mTitles;
+    private String currentCategories;
+    private List<FenQiJdProductFragment> mFragments = new ArrayList<>();
     private FragmentPagerAdapter mAdapter;
+
+    private FenQiJdCategories product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +43,6 @@ public class FenQiJdDetailActivity extends AppCompatActivity {
 
         initData();
         initView();
-        initEvent();
 
         mIndicator.setVisableTabCount(3);
         mIndicator.setTabItemTitles(mTitles);
@@ -45,8 +52,12 @@ public class FenQiJdDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        product = (FenQiJdCategories) getIntent().getBundleExtra(Constant.FENQI_JD_PRODUCT_DETAIL_BUNDLE).getSerializable(Constant.FENQI_JD_PRODUCT_DETAIL_DESC);
+        currentCategories = product.getTitle();
+        mTitles = Arrays.asList(product.getBrands().split(","));
+
         for(String title : mTitles) {
-            mFragments.add((DemoFragment) DemoFragment.newInstance(title));
+            mFragments.add((FenQiJdProductFragment) FenQiJdProductFragment.newInstance(title, currentCategories));
         }
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -66,7 +77,4 @@ public class FenQiJdDetailActivity extends AppCompatActivity {
         mIndicator = (ViewPagerIndicator) findViewById(R.id.id_fq_js_detail_indicator);
     }
 
-    private void initEvent() {
-
-    }
 }

@@ -65,9 +65,9 @@ public class ViewPagerIndicator extends LinearLayout {
     /**
      * 颜色常量
      */
-    private static final int DEFAULT_COLOR = 0x77ffffff;
-    private static final int NOMAL_COLOR = 0x44ffffff;
-    private static final int LIGHT_COLOR = 0x0000ff;
+    private static final String DEFAULT_COLOR = "#999999";
+    private static final String NOMAL_COLOR = "#999999";
+    private static final String LIGHT_COLOR = "#33cc99";
 
     /**
      * 与indicator 关联 的viewpager
@@ -153,7 +153,7 @@ public class ViewPagerIndicator extends LinearLayout {
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.parseColor("#ffffff"));
+        mPaint.setColor(Color.parseColor("#33cc99"));
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setPathEffect(new CornerPathEffect(6));  // 画笔设置圆角效果
     }
@@ -233,8 +233,8 @@ public class ViewPagerIndicator extends LinearLayout {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         lp.width = getScreenWidth() / mVisableTabCount;
         tvTitle.setText(title);
-        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-        tvTitle.setTextColor(DEFAULT_COLOR);
+        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        tvTitle.setTextColor(Color.parseColor(DEFAULT_COLOR));
         tvTitle.setGravity(Gravity.CENTER);
         tvTitle.setLayoutParams(lp);
         return tvTitle;
@@ -304,7 +304,7 @@ public class ViewPagerIndicator extends LinearLayout {
         resetTextView();
         View childView = getChildAt(position);
         if (childView instanceof TextView) {
-            ((TextView) childView).setTextColor(LIGHT_COLOR);
+            ((TextView) childView).setTextColor(Color.parseColor(LIGHT_COLOR));
         }
     }
 
@@ -315,7 +315,7 @@ public class ViewPagerIndicator extends LinearLayout {
         for (int i = 0; i < getChildCount(); i++) {
             View childView = getChildAt(i);
             if (childView instanceof TextView) {
-                ((TextView) childView).setTextColor(NOMAL_COLOR);
+                ((TextView) childView).setTextColor(Color.parseColor(NOMAL_COLOR));
             }
         }
     }

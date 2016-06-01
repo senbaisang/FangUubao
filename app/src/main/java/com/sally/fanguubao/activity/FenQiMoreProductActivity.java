@@ -58,7 +58,7 @@ public class FenQiMoreProductActivity extends AppCompatActivity {
 
     private void setData() {
         mTvName.setText(product.getName());
-        mTvPrice.setText(product.getPrice() + "");
+        mTvPrice.setText("原价：" + Constant.REN_MIN_BI + product.getPrice() + "");
         mTvFqPrice.setText(new DecimalFormat("#.##").format(product.getPrice()));
         mTvRemark.setText(product.getRemark());
     }

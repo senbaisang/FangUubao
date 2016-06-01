@@ -6,6 +6,8 @@ import com.sally.fanguubao.bean.FenQiCarBrandsProduct;
 import com.sally.fanguubao.bean.FenQiCarProduct;
 import com.sally.fanguubao.bean.FenQiIphoneProduct;
 import com.sally.fanguubao.bean.FenQiJdCategories;
+import com.sally.fanguubao.bean.FenQiJdProduct;
+import com.sally.fanguubao.bean.FenQiLuxProductDetail;
 import com.sally.fanguubao.bean.FuLiSheProduct;
 
 import java.util.List;
@@ -64,6 +66,26 @@ public class GsonUtil {
     public static List<FenQiJdCategories> fenQiJdJson(String str) {
         List<FenQiJdCategories> lists = new Gson().fromJson(str, new TypeToken<List<FenQiJdCategories>>() {}.getType());
         return lists;
+    }
+
+    /**
+     * 分期 － jd 每一个分类的产品信息
+     * @param str
+     * @return
+     */
+    public static List<FenQiJdProduct> fenQiJdProductJson(String str) {
+        List<FenQiJdProduct> products = new Gson().fromJson(str, new TypeToken<List<FenQiJdProduct>>() {}.getType());
+        return products;
+    }
+
+    /**
+     * 分期 － lux 每一个分类下的产品信息
+     * @param str
+     * @return
+     */
+    public static List<FenQiLuxProductDetail> fenqiLuxProductJson(String str) {
+        List<FenQiLuxProductDetail> products = new Gson().fromJson(str, new TypeToken<List<FenQiLuxProductDetail>>() {}.getType());
+        return products;
     }
 
 }

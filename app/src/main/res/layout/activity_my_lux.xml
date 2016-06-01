@@ -47,12 +47,14 @@
                 android:background="@drawable/lux_bag" />
 
             <ImageView
+                android:layout_marginTop="10dp"
                 android:id="@+id/id_fq_lux_scarf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/lux_scarf" />
 
             <ImageView
+                android:layout_marginTop="10dp"
                 android:id="@+id/id_fq_lux_glasses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

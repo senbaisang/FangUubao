@@ -3,6 +3,7 @@ package com.sally.fanguubao.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -45,6 +46,9 @@ public class MyJdActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MyJdActivity.this, FenQiJdDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constant.FENQI_JD_PRODUCT_DETAIL_DESC, mLists.get((int) parent.getAdapter().getItemId(position)));
+                intent.putExtra(Constant.FENQI_JD_PRODUCT_DETAIL_BUNDLE, bundle);
                 startActivity(intent);
             }
         });
