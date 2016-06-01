@@ -36,6 +36,7 @@
         <activity android:name=".activity.FenQiJdDetailActivity" />
         <activity android:name=".activity.FenQiLuxDetailActivity" />
         <activity android:name=".activity.FenQiLuxProductShowActivity" />
+        <activity android:name=".activity.FaqActivity" />
     </application>
 
 </manifest>

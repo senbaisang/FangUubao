@@ -65,6 +65,7 @@
         </LinearLayout>
 
         <com.sally.fanguubao.view.CustomWoDeItemView
+            android:id="@+id/id_wd_faq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -72,30 +73,35 @@
             sally:my_title="常见问题"></com.sally.fanguubao.view.CustomWoDeItemView>
 
         <com.sally.fanguubao.view.CustomWoDeItemView
+            android:id="@+id/id_wd_ceo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             sally:my_logo="@drawable/user_ceo"
             sally:my_title="CEO信箱"></com.sally.fanguubao.view.CustomWoDeItemView>
 
         <com.sally.fanguubao.view.CustomWoDeItemView
+            android:id="@+id/id_wd_share"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             sally:my_logo="@drawable/user_share"
             sally:my_title="推荐给好友"></com.sally.fanguubao.view.CustomWoDeItemView>
 
         <com.sally.fanguubao.view.CustomWoDeItemView
+            android:id="@+id/id_wd_like"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             sally:my_logo="@drawable/user_like"
             sally:my_title="给个好评"></com.sally.fanguubao.view.CustomWoDeItemView>
 
         <com.sally.fanguubao.view.CustomWoDeItemView
+            android:id="@+id/id_wd_clean_cache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             sally:my_logo="@drawable/user_cache"
             sally:my_title="清空缓存"></com.sally.fanguubao.view.CustomWoDeItemView>
 
         <com.sally.fanguubao.view.CustomWoDeItemView
+            android:id="@+id/id_wd_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             sally:my_logo="@drawable/user_about_us"

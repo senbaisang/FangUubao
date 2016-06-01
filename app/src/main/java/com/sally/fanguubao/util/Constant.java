@@ -48,8 +48,8 @@ public class Constant {
      * url
      */
 
-    public static final String HOST = "http://192.168.56.1:3333/";
-//    public static final String HOST = "http://www.uubpay.com/";
+//    public static final String HOST = "http://192.168.56.1:3333/";
+    public static final String HOST = "http://www.uubpay.com/";
 
 
     public static final String DEBUG_FULISHE_DETAIL = Constant.HOST + "api/fulishe/list?1=1";
@@ -69,4 +69,9 @@ public class Constant {
 
     // http://192.168.56.1:3333//api/lux/list?category=BA&key=BALENCIAGA
     public static final String DEBUG_FENQI_LUX_DETAIL = Constant.HOST + "api/lux/list?category=";
+
+    /**
+     * h5
+     */
+    public static final String FAQ = "http://d.uubpay.com/weixin/main/faq";
 }
