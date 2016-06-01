@@ -137,7 +137,8 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
         } else {
             for(int i=0; i<models.length; i++) {
                 TextView tv = new TextView(this);
-                tv.setText(models[i]);
+                tv.setText(models[i].split(":")[0]);
+                tv.setHint(models[i].split(":")[1]);
                 tv.setBackground(getResources().getDrawable(R.drawable.btn_select_shape));
                 tv.setPadding(8, 4, 8, 4);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -233,9 +234,9 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String[] value = view.getText().toString().split(":");
-                    mTvPrice.setText("原价：" + Constant.REN_MIN_BI + value[1]);
-                    mTvFqPrice.setText(new DecimalFormat("#.##").format(Integer.valueOf(value[1])/12) + "");
+                    String value = view.getHint().toString();
+                    mTvPrice.setText("原价：" + Constant.REN_MIN_BI + value);
+                    mTvFqPrice.setText(new DecimalFormat("#.##").format(Integer.valueOf(value)/12) + "");
                 }
             });
         }

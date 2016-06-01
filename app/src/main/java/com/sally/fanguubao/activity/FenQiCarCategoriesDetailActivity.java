@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,8 +61,8 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
 
         initData();
         initView();
-        initEvent();
         setData();
+        initEvent();
     }
 
     private void initData() {
@@ -156,6 +158,27 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
         mWangYi.setOnClickListener(this);
         mSina.setOnClickListener(this);
         mSouHu.setOnClickListener(this);
+
+        /*
+         * 颜色 和 型号 事件
+         */
+        for(int i=0; i<mLcolors.getChildCount(); i++) {
+            final TextView tv = (TextView) mLcolors.getChildAt(i);
+            Log.e("zhe li de dia", mLcolors.getChildCount() + "" + ((TextView) mLcolors.getChildAt(i)).getText().toString()) ;
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showMsg(tv.getText().toString() + "show");
+                }
+            });
+        }
+        mLmodels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tv = (TextView) view;
+                showMsg(tv.getText().toString());
+            }
+        });
     }
 
     private void setData() {
@@ -170,7 +193,7 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
             TextView tv = new TextView(this);
             tv.setText(colors[i]);
             tv.setBackground(getResources().getDrawable(R.drawable.btn_select_shape));
-            tv.setPadding(4, 8, 4, 8);
+            tv.setPadding(4, 12, 4, 12);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             lp.rightMargin = 20;

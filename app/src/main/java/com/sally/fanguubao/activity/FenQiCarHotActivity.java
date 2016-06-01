@@ -61,8 +61,8 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
 
         initData();
         initView();
-        initEvent();
         setData();
+        initEvent();
     }
 
     private void initData() {
@@ -163,6 +163,25 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
         mSina.setOnClickListener(this);
         mSouHu.setOnClickListener(this);
 
+        /*
+         * 颜色 和 型号 的点击事件
+         */
+        for(int i=0; i<mLColor.getChildCount(); i++) {
+            final TextView view = (TextView) mLColor.getChildAt(i);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showMsg(view.getText().toString());
+                }
+            });
+        }
+        mLModel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tv = (TextView) view;
+                showMsg(tv.getText().toString());
+            }
+        });
     }
 
     private void setData() {

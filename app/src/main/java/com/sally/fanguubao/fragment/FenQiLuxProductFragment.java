@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import okhttp3.Call;
  * Created by sally on 16/6/1.
  */
 public class FenQiLuxProductFragment extends Fragment {
+    public static final String TAG = "FenQiLuxProductFragment";
 
     private String mTitle;
     private String mCategory;
@@ -78,6 +80,7 @@ public class FenQiLuxProductFragment extends Fragment {
 
             @Override
             public void onResponse(String response) {
+                Log.e(TAG, mCategory + ", key = " + mTitle);
                 mLists = GsonUtil.fenqiLuxProductJson(response);
 
                 if(mLists == null || mLists.size() <= 0) {
