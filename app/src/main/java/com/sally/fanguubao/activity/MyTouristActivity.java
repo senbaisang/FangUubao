@@ -13,6 +13,6 @@ public class MyTouristActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_tourist);
+        setContentView(R.layout.activity_my_wedding);
     }
 }

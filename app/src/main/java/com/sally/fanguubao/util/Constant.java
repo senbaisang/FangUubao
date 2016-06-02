@@ -43,13 +43,16 @@ public class Constant {
     public static final String FENQI_LUX_PRODUCT_SHOW_BUNDLE = "fenqi_lux_product_show_bundle";
     public static final String FENQI_LUX_PRODUCT_SHOW_DESC = "fenqi_lux_product_show_desc";
 
+    public static final String COUNTRY_BUNDLE = "country_bundle";
+    public static final String COUNTRY = "country";
+
 
     /**
      * url
      */
 
-//    public static final String HOST = "http://192.168.56.1:3333/";
-    public static final String HOST = "http://www.uubpay.com/";
+    public static final String HOST = "http://192.168.56.1:3333/";
+//    public static final String HOST = "http://www.uubpay.com/";
 
 
     public static final String DEBUG_FULISHE_DETAIL = Constant.HOST + "api/fulishe/list?1=1";
@@ -70,8 +73,16 @@ public class Constant {
     // http://192.168.56.1:3333//api/lux/list?category=BA&key=BALENCIAGA
     public static final String DEBUG_FENQI_LUX_DETAIL = Constant.HOST + "api/lux/list?category=";
 
+    // 首页广告， 分期推荐产品
+    public static final String DEBUG_FENQI_TUIJIAN = Constant.HOST + "/api/user/half_screen_advs2?1=1";
+
+    // 旅游地址
+    public static final String DEBUG_LY_ADDRESS = HOST + "/api/user/countries";
+
     /**
      * h5
      */
     public static final String FAQ = "http://d.uubpay.com/weixin/main/faq";
+
+
 }

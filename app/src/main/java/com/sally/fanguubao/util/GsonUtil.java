@@ -2,12 +2,14 @@ package com.sally.fanguubao.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sally.fanguubao.bean.Address;
 import com.sally.fanguubao.bean.FenQiCarBrandsProduct;
 import com.sally.fanguubao.bean.FenQiCarProduct;
 import com.sally.fanguubao.bean.FenQiIphoneProduct;
 import com.sally.fanguubao.bean.FenQiJdCategories;
 import com.sally.fanguubao.bean.FenQiJdProduct;
 import com.sally.fanguubao.bean.FenQiLuxProductDetail;
+import com.sally.fanguubao.bean.FenQiRecommand;
 import com.sally.fanguubao.bean.FuLiSheProduct;
 
 import java.util.List;
@@ -86,6 +88,26 @@ public class GsonUtil {
     public static List<FenQiLuxProductDetail> fenqiLuxProductJson(String str) {
         List<FenQiLuxProductDetail> products = new Gson().fromJson(str, new TypeToken<List<FenQiLuxProductDetail>>() {}.getType());
         return products;
+    }
+
+    /**
+     * 这里返回的时 分期 － 精品推荐的信息 是一个json对象，里面包含 启动广告轮播图 ＋ 推荐产品两个json对象
+     * @param str
+     * @return
+     */
+    public static FenQiRecommand fenQiRecommandJson(String str) {
+        FenQiRecommand products = new Gson().fromJson(str, new TypeToken<FenQiRecommand>() {}.getType());
+        return products;
+    }
+
+    /**
+     * 分期 － 旅游 的地址
+     * @param str
+     * @return
+     */
+    public static List<Address> fenQiLyAddress(String str) {
+        List<Address> addresses = new Gson().fromJson(str, new TypeToken<List<Address>>() {}.getType());
+        return addresses;
     }
 
 }

@@ -18,7 +18,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.activity.MyCarActivity;
 import com.sally.fanguubao.activity.MyDecorateActivity;
@@ -31,15 +34,21 @@ import com.sally.fanguubao.activity.MyTouristActivity;
 import com.sally.fanguubao.activity.MyWeddingActivity;
 import com.sally.fanguubao.adapter.FenQiGridViewAdapter;
 import com.sally.fanguubao.bean.FenQiButton;
+import com.sally.fanguubao.bean.FenQiRecommand;
 import com.sally.fanguubao.util.Constant;
+import com.sally.fanguubao.util.GsonUtil;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+
 /**
  * Created by sally on 16/5/26.
  */
-public class FenQiFragment extends Fragment {
+public class FenQiFragment extends Fragment implements View.OnClickListener {
 
     private ViewPager mViewPager;
     private MyPageAdapter myPageAdapter;
@@ -58,6 +67,21 @@ public class FenQiFragment extends Fragment {
     private int lastPosition = 0;
 
     private List<AppCompatActivity> mGridActivities;
+
+    /**
+     * 精品推荐数据
+     */
+    private List<FenQiRecommand.Recommand> mRecommandLists;
+    private ImageView mRecommandLogo1;
+    private TextView mRecommandTv10;
+    private TextView mRecommandTv11;
+    private TextView mRecommandTv12;
+    private ImageView mRecommandLogo2;
+    private TextView mRecommandTv20;
+    private TextView mRecommandTv21;
+    private TextView mRecommandTv22;
+    private ImageView mRecommandLogo3;
+    private TextView mRecommandTv30;
 
     /**
      * 轮播图的轮转
@@ -89,7 +113,7 @@ public class FenQiFragment extends Fragment {
         mPoints = (LinearLayout) view.findViewById(R.id.id_fq_points);
         mGridView = (GridView) view.findViewById(R.id.id_fq_grid_view);
 
-        initView();
+        initView(view);
         initData();
         initEvent();
 
@@ -119,6 +143,35 @@ public class FenQiFragment extends Fragment {
         mBtns.add(mFenqiButton);
         mFenqiButton = new FenQiButton("更    多", R.drawable.function_more);
         mBtns.add(mFenqiButton);
+
+        OkHttpUtils.get().url(Constant.DEBUG_FENQI_TUIJIAN).build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+            }
+
+            @Override
+            public void onResponse(String response) {
+                mRecommandLists = GsonUtil.fenQiRecommandJson(response).getRecommands();
+                setData(mRecommandLists);
+            }
+        });
+    }
+
+    /**
+     * 为底部精品推荐设置数据
+     * @param mRecommandLists
+     */
+    private void setData(List<FenQiRecommand.Recommand> mRecommandLists) {
+        UrlImageViewHelper.setUrlDrawable(mRecommandLogo1, mRecommandLists.get(0).getLogo().getUrl(), R.drawable.a);
+        mRecommandTv10.setText(mRecommandLists.get(0).getName());
+        mRecommandTv11.setText(mRecommandLists.get(1).getName());
+        mRecommandTv12.setText(mRecommandLists.get(2).getName());
+        UrlImageViewHelper.setUrlDrawable(mRecommandLogo2, mRecommandLists.get(3).getLogo().getUrl(), R.drawable.a);
+        mRecommandTv20.setText(mRecommandLists.get(3).getName());
+        mRecommandTv21.setText(mRecommandLists.get(4).getName());
+        mRecommandTv22.setText(mRecommandLists.get(5).getName());
+        UrlImageViewHelper.setUrlDrawable(mRecommandLogo3, mRecommandLists.get(6).getLogo().getUrl(), R.drawable.a);
+        mRecommandTv30.setText(mRecommandLists.get(6).getName());
     }
 
     private void initEvent() {
@@ -153,10 +206,10 @@ public class FenQiFragment extends Fragment {
         });
     }
 
-    private void initView() {
+    private void initView(View view) {
         mBannerImageViews = new ArrayList<>();
         mPointImageViews = new ArrayList<>();
-        for(int i=0; i<mBannerImgs.length; i++) {
+        for (int i = 0; i < mBannerImgs.length; i++) {
             ImageView bannerIv = new ImageView(getContext());
             bannerIv.setImageResource(mBannerImgs[i]);
             mBannerImageViews.add(bannerIv);
@@ -167,7 +220,7 @@ public class FenQiFragment extends Fragment {
             point.setLayoutParams(lp);
             point.setImageResource(R.drawable.point_selector);
 
-            if(i == 0) {
+            if (i == 0) {
                 point.setEnabled(true);
             } else {
                 point.setEnabled(false);
@@ -176,7 +229,9 @@ public class FenQiFragment extends Fragment {
             mPoints.addView(point);
         }
 
-        // 将gridview按钮涉及到的activity全部加载进来
+        /*
+         * 将gridview按钮涉及到的activity全部加载进来
+         */
         mGridActivities = new ArrayList<>();
         mGridActivities.add(new MyDecorateActivity());
         mGridActivities.add(new MyTouristActivity());
@@ -187,6 +242,66 @@ public class FenQiFragment extends Fragment {
         mGridActivities.add(new MyCarActivity());
         mGridActivities.add(new MyRentActivity());
         mGridActivities.add(new MyMoreActivity());
+
+        /*
+         * 精品推荐view
+         */
+        mRecommandLogo1 = (ImageView) view.findViewById(R.id.id_fq_tj_iv1);
+        mRecommandTv10 = (TextView) view.findViewById(R.id.id_fq_tj_tv10);
+        mRecommandTv11 = (TextView) view.findViewById(R.id.id_fq_tj_tv11);
+        mRecommandTv12 = (TextView) view.findViewById(R.id.id_fq_tj_tv12);
+        mRecommandLogo2 = (ImageView) view.findViewById(R.id.id_fq_tj_iv2);
+        mRecommandTv20 = (TextView) view.findViewById(R.id.id_fq_tj_tv20);
+        mRecommandTv21 = (TextView) view.findViewById(R.id.id_fq_tj_tv21);
+        mRecommandTv22 = (TextView) view.findViewById(R.id.id_fq_tj_tv22);
+        mRecommandLogo3 = (ImageView) view.findViewById(R.id.id_fq_tj_iv3);
+        mRecommandTv30 = (TextView) view.findViewById(R.id.id_fq_tj_tv30);
+        mRecommandLogo1.setOnClickListener(this);
+        mRecommandTv10.setOnClickListener(this);
+        mRecommandTv11.setOnClickListener(this);
+        mRecommandTv12.setOnClickListener(this);
+        mRecommandLogo2.setOnClickListener(this);
+        mRecommandTv20.setOnClickListener(this);
+        mRecommandTv21.setOnClickListener(this);
+        mRecommandTv22.setOnClickListener(this);
+        mRecommandLogo3.setOnClickListener(this);
+        mRecommandTv30.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_fq_tj_iv1:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv10:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv11:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv12:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_iv2:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv20:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv21:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv22:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_iv3:
+                showMsg("haha, jump ~~~");
+                break;
+            case R.id.id_fq_tj_tv30:
+                showMsg("haha, jump ~~~");
+                break;
+        }
     }
 
     /**
@@ -245,5 +360,9 @@ public class FenQiFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         isRunning = false;
+    }
+
+    public void showMsg(String text) {
+        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

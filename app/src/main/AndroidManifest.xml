@@ -37,6 +37,9 @@
         <activity android:name=".activity.FenQiLuxDetailActivity" />
         <activity android:name=".activity.FenQiLuxProductShowActivity" />
         <activity android:name=".activity.FaqActivity" />
+
+        <activity android:name=".activity.CountrySelectActivity" />
+        <activity android:name=".activity.CitySelectActivity" />
     </application>
 
 </manifest>

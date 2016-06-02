@@ -4,41 +4,240 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/id_fq_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:background="#eee">
 
         <LinearLayout
-            android:id="@+id/id_fq_points"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
-            android:layout_alignParentBottom="true"
-            android:background="#3333"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="#eee"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/id_fq_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v4.view.ViewPager>
+
+                <LinearLayout
+                    android:id="@+id/id_fq_points"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#3333"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <com.sally.fanguubao.view.NOScrollGridView
+                android:id="@+id/id_fq_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:horizontalSpacing="1dp"
+                android:numColumns="3"
+                android:verticalSpacing="1dp"></com.sally.fanguubao.view.NOScrollGridView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="----- 推荐精品 -----"
+                android:textColor="#559"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/id_fq_tj_iv1"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/a" />
+
+                    <TextView
+                        android:id="@+id/id_fq_tj_tv10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="#e666"
+                        android:padding="4dp"
+                        android:text="500；阿三领导开会发"
+                        android:textColor="#fff"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999" />
+
+                <TextView
+                    android:id="@+id/id_fq_tj_tv11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="8dp"
+                    android:text="455/阿三；连大是大非"
+                    android:textColor="#333"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999" />
+
+                <TextView
+                    android:id="@+id/id_fq_tj_tv12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="8dp"
+                    android:text="455/阿三；连大是大非"
+                    android:textColor="#333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/id_fq_tj_iv2"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/a" />
+
+                    <TextView
+                        android:id="@+id/id_fq_tj_tv20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="#e666"
+                        android:padding="4dp"
+                        android:text="500；阿三领导开会发"
+                        android:textColor="#fff"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999" />
+
+                <TextView
+                    android:id="@+id/id_fq_tj_tv21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="8dp"
+                    android:text="455/阿三；连大是大非"
+                    android:textColor="#333"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999" />
+
+                <TextView
+                    android:id="@+id/id_fq_tj_tv22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="8dp"
+                    android:text="455/阿三；连大是大非"
+                    android:textColor="#333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/id_fq_tj_iv3"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/a" />
+
+                    <TextView
+                        android:id="@+id/id_fq_tj_tv30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="#e666"
+                        android:padding="4dp"
+                        android:text="500；阿三领导开会发"
+                        android:textColor="#fff"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-    </RelativeLayout>
-
-    <GridView
-        android:id="@+id/id_fq_grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:horizontalSpacing="1dp"
-        android:numColumns="3"
-        android:verticalSpacing="1dp"></GridView>
-
-
+    </ScrollView>
 </LinearLayout>
