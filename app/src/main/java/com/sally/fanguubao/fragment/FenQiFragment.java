@@ -1,6 +1,7 @@
 package com.sally.fanguubao.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.activity.MyCarActivity;
@@ -32,11 +34,13 @@ import com.sally.fanguubao.activity.MyMoreActivity;
 import com.sally.fanguubao.activity.MyRentActivity;
 import com.sally.fanguubao.activity.MyTouristActivity;
 import com.sally.fanguubao.activity.MyWeddingActivity;
+import com.sally.fanguubao.activity.RecommandComboActivity;
 import com.sally.fanguubao.adapter.FenQiGridViewAdapter;
 import com.sally.fanguubao.bean.FenQiButton;
 import com.sally.fanguubao.bean.FenQiRecommand;
 import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.util.GsonUtil;
+import com.sally.fanguubao.util.Utilities;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -58,7 +62,7 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
     private GridView mGridView;
     private FenQiGridViewAdapter mFenQiGridViewAdapter;
 
-    private int[] mBannerImgs = {R.drawable.a, R.drawable.b, R.drawable.d};
+    private List<String> mBannerImgs;
     private FenQiButton mFenqiButton;
     private List<FenQiButton> mBtns;
 
@@ -68,10 +72,17 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
 
     private List<AppCompatActivity> mGridActivities;
 
+    private String[] mTitles = { "我要装修", "我要旅游", "我要结婚", "苹果专区", "我要买家电", "我要买奢侈品", "我要买车", "钻石珠宝", "更多可分期单品" };
+
     /**
      * 精品推荐数据
      */
     private List<FenQiRecommand.Recommand> mRecommandLists;
+    /**
+     * Banner数据 图片
+     */
+    private List<FenQiRecommand.Adv> mAdvertiseLists;
+
     private ImageView mRecommandLogo1;
     private TextView mRecommandTv10;
     private TextView mRecommandTv11;
@@ -84,21 +95,27 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
     private TextView mRecommandTv30;
 
     /**
+     * 顶部top_bar
+     */
+    private TextView mTopBarTitle;
+    private ImageView mTopBarCall;
+
+    /**
      * 轮播图的轮转
      */
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case RUNNING_MESSAGE:
-                    mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
-                    if(isRunning) {
-                        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 3000);
-                    }
-                    break;
-            }
-        }
-    };
+//    private Handler mHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case RUNNING_MESSAGE:
+//                    mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+//                    if(isRunning) {
+//                        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 3000);
+//                    }
+//                    break;
+//            }
+//        }
+//    };
 
     public FenQiFragment() {
         super();
@@ -117,11 +134,13 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
         initData();
         initEvent();
 
+
         isRunning = true;
-        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 3000);
+//        mHandler.sendEmptyMessageDelayed(RUNNING_MESSAGE, 3000);
 
         return view;
     }
+
 
     private void initData() {
         mBtns = new ArrayList<>();
@@ -152,16 +171,20 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(String response) {
                 mRecommandLists = GsonUtil.fenQiRecommandJson(response).getRecommands();
-                setData(mRecommandLists);
+                mAdvertiseLists = GsonUtil.fenQiRecommandJson(response).getAdvs();
+                setData(mRecommandLists, mAdvertiseLists);
+
+
             }
         });
+
     }
 
     /**
      * 为底部精品推荐设置数据
      * @param mRecommandLists
      */
-    private void setData(List<FenQiRecommand.Recommand> mRecommandLists) {
+    private void setData(List<FenQiRecommand.Recommand> mRecommandLists, List<FenQiRecommand.Adv> mAdvertiseLists) {
         UrlImageViewHelper.setUrlDrawable(mRecommandLogo1, mRecommandLists.get(0).getLogo().getUrl(), R.drawable.a);
         mRecommandTv10.setText(mRecommandLists.get(0).getName());
         mRecommandTv11.setText(mRecommandLists.get(1).getName());
@@ -172,46 +195,37 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
         mRecommandTv22.setText(mRecommandLists.get(5).getName());
         UrlImageViewHelper.setUrlDrawable(mRecommandLogo3, mRecommandLists.get(6).getLogo().getUrl(), R.drawable.a);
         mRecommandTv30.setText(mRecommandLists.get(6).getName());
+
+        /**
+         * 设置了banner图片，再初始化banner
+         */
+        mBannerImgs = new ArrayList<>();
+        for(int i=0; i<mAdvertiseLists.size(); i++) {
+            mBannerImgs.add(i, mAdvertiseLists.get(i).getLogo().getUrl());
+        }
+        initBanner();
+
+        mRecommandLogo1.setOnClickListener(this);
+        mRecommandTv10.setOnClickListener(this);
+        mRecommandTv11.setOnClickListener(this);
+        mRecommandTv12.setOnClickListener(this);
+        mRecommandLogo2.setOnClickListener(this);
+        mRecommandTv20.setOnClickListener(this);
+        mRecommandTv21.setOnClickListener(this);
+        mRecommandTv22.setOnClickListener(this);
+        mRecommandLogo3.setOnClickListener(this);
+        mRecommandTv30.setOnClickListener(this);
     }
 
-    private void initEvent() {
-        myPageAdapter = new MyPageAdapter();
-        mViewPager.setAdapter(myPageAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                position = position % mBannerImgs.length;
-                mPoints.getChildAt(position).setEnabled(true);
-                mPoints.getChildAt(lastPosition).setEnabled(false);
-                lastPosition = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-
-        mFenQiGridViewAdapter = new FenQiGridViewAdapter(mBtns, getContext());
-        mGridView.setAdapter(mFenQiGridViewAdapter);
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), mGridActivities.get(position).getClass());
-                getActivity().startActivity(intent);
-            }
-        });
-    }
-
-    private void initView(View view) {
+    /**
+     * 顶部广告
+     */
+    private void initBanner() {
         mBannerImageViews = new ArrayList<>();
         mPointImageViews = new ArrayList<>();
-        for (int i = 0; i < mBannerImgs.length; i++) {
+        for (int i = 0; i < mBannerImgs.size(); i++) {
             ImageView bannerIv = new ImageView(getContext());
-            bannerIv.setImageResource(mBannerImgs[i]);
+            UrlImageViewHelper.setUrlDrawable(bannerIv, mBannerImgs.get(i));
             mBannerImageViews.add(bannerIv);
 
             ImageView point = new ImageView(getContext());
@@ -229,6 +243,46 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
             mPoints.addView(point);
         }
 
+        /**
+         * banner的适配器
+         */
+        myPageAdapter = new MyPageAdapter();
+        mViewPager.setAdapter(myPageAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                position = position % mBannerImgs.size();
+                mPoints.getChildAt(position).setEnabled(true);
+                mPoints.getChildAt(lastPosition).setEnabled(false);
+                lastPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+    }
+
+
+    private void initEvent() {
+        mFenQiGridViewAdapter = new FenQiGridViewAdapter(mBtns, getContext());
+        mGridView.setAdapter(mFenQiGridViewAdapter);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), mGridActivities.get(position).getClass());
+                intent.putExtra(Constant.ACTIVITY_TITLE, mTitles[position]);
+                getActivity().startActivity(intent);
+            }
+        });
+    }
+
+    private void initView(View view) {
         /*
          * 将gridview按钮涉及到的activity全部加载进来
          */
@@ -256,50 +310,48 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
         mRecommandTv22 = (TextView) view.findViewById(R.id.id_fq_tj_tv22);
         mRecommandLogo3 = (ImageView) view.findViewById(R.id.id_fq_tj_iv3);
         mRecommandTv30 = (TextView) view.findViewById(R.id.id_fq_tj_tv30);
-        mRecommandLogo1.setOnClickListener(this);
-        mRecommandTv10.setOnClickListener(this);
-        mRecommandTv11.setOnClickListener(this);
-        mRecommandTv12.setOnClickListener(this);
-        mRecommandLogo2.setOnClickListener(this);
-        mRecommandTv20.setOnClickListener(this);
-        mRecommandTv21.setOnClickListener(this);
-        mRecommandTv22.setOnClickListener(this);
-        mRecommandLogo3.setOnClickListener(this);
-        mRecommandTv30.setOnClickListener(this);
+
+
+        /**
+         * top_bar
+         */
+        mTopBarTitle = (TextView) view.findViewById(R.id.id_item_top_bar_title);
+        mTopBarTitle.setText("分期");
+        mTopBarCall = (ImageView) view.findViewById(R.id.id_item_top_bar_call);
+        mTopBarCall.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), RecommandComboActivity.class);
         switch (v.getId()) {
-            case R.id.id_fq_tj_iv1:
-                showMsg("haha, jump ~~~");
-                break;
-            case R.id.id_fq_tj_tv10:
-                showMsg("haha, jump ~~~");
+            case R.id.id_fq_tj_iv1:  // == R.id.id_fq_tj_tv10
+                intent.putExtra(Constant.RECOMMAND_IV, mRecommandLists.get(0).getCode());
+                startActivity(intent);
                 break;
             case R.id.id_fq_tj_tv11:
-                showMsg("haha, jump ~~~");
+                intent.putExtra(Constant.RECOMMAND_IV, mRecommandLists.get(1).getCode());
+                startActivity(intent);
                 break;
             case R.id.id_fq_tj_tv12:
-                showMsg("haha, jump ~~~");
+                intent.putExtra(Constant.RECOMMAND_IV, mRecommandLists.get(2).getCode());
+                startActivity(intent);
                 break;
-            case R.id.id_fq_tj_iv2:
-                showMsg("haha, jump ~~~");
-                break;
-            case R.id.id_fq_tj_tv20:
-                showMsg("haha, jump ~~~");
+            case R.id.id_fq_tj_iv2: // == R.id.id_fq_tj_tv20
+               Utilities.showMsg(getActivity(), "旅游1");
                 break;
             case R.id.id_fq_tj_tv21:
-                showMsg("haha, jump ~~~");
+                Utilities.showMsg(getActivity(), "旅游2");
                 break;
             case R.id.id_fq_tj_tv22:
-                showMsg("haha, jump ~~~");
+                Utilities.showMsg(getActivity(), "旅游3");
                 break;
             case R.id.id_fq_tj_iv3:
-                showMsg("haha, jump ~~~");
+                Intent carActivity = new Intent(getActivity(), MyCarActivity.class);
+                startActivity(carActivity);
                 break;
-            case R.id.id_fq_tj_tv30:
-                showMsg("haha, jump ~~~");
+            case R.id.id_item_top_bar_call:
+                Utilities.phoneCall(getActivity());
                 break;
         }
     }
@@ -359,7 +411,7 @@ public class FenQiFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        isRunning = false;
+//        isRunning = false;
     }
 
     public void showMsg(String text) {

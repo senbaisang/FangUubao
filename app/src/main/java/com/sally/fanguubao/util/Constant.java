@@ -9,6 +9,12 @@ public class Constant {
 
     public static final String REN_MIN_BI = "¥";
 
+    public static final String KE_FU_DIAN_HUA = "12345678";
+
+    public static final int SELECT_COUNTRY = 0x110;
+    public static final int SELECT_CITY = 0x111;
+    public static final int GET_CITY_RESPONSE_CODE = 0x112;
+
     /**
      * 传递数据的常量
      */
@@ -46,12 +52,20 @@ public class Constant {
     public static final String COUNTRY_BUNDLE = "country_bundle";
     public static final String COUNTRY = "country";
 
+    public static final String RECOMMAND_IV_FLAG = "recommand_iv_flag";
+    public static final String RECOMMAND_IV = "recommand_iv";
+
+    /**
+     * activity的title
+     */
+    public static final String ACTIVITY_TITLE = "activity_title";
+
 
     /**
      * url
      */
 
-    public static final String HOST = "http://192.168.56.1:3333/";
+    public static final String HOST = "http://192.168.1.104:5555/";
 //    public static final String HOST = "http://www.uubpay.com/";
 
 
@@ -83,6 +97,9 @@ public class Constant {
      * h5
      */
     public static final String FAQ = "http://d.uubpay.com/weixin/main/faq";
+
+    // 首页推荐 ： http://192.168.0.104:3333/api/decoration/product_of/(53)
+    public static final String DEBUG_DECORATING_TAO_CAN = HOST + "/api/decoration/product_of/";
 
 
 }

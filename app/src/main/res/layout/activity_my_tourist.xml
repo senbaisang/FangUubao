@@ -1,6 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:sally="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_top_bar_common" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eee"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_top_mxfq" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/top_wd"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/top_ly" />
+
+                <com.sally.fanguubao.view.CustomDoubleTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/top_wd"
+                    sally:my_bottom_title="19789条线路，线上的价格，线下的服务"
+                    sally:my_top_title="中国国旅、神舟、康辉等大牌旅行社直供"></com.sally.fanguubao.view.CustomDoubleTextView>
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#fff"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="目的地"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_ly_destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="点击选择"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#fff"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出发时间"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_ly_earliest_leave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="最早出发"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="~"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_ly_latest_leave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="最晚出发"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#fff"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行程天数"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_ly_day_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="点击选择"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#fff"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="住宿等级"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_ly_lodging_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="点击选择"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#fff"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出行成人"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:hint="点击选择"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#fff"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的总预算"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/id_ly_seek_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/id_ly_budge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="$3000"
+                    android:textColor="@color/greenLight"
+                    android:textColorHint="#666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <include
+                layout="@layout/item_bottom_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

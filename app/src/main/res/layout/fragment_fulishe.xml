@@ -5,6 +5,8 @@
     android:orientation="vertical"
     android:background="#eee">
 
+    <include layout="@layout/item_top_bar" />
+
     <ListView
         android:background="#eee"
         android:id="@+id/id_fls_list_view"

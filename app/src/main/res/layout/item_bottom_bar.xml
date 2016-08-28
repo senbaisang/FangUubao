@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/id_item_bottom_bar_share"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_bg"
+        android:gravity="center"
+        android:text="分享"
+        android:textColor="@color/white"
+        android:textSize="22dp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white" />
+
+    <Button
+        android:id="@+id/id_item_bottom_bar_query"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_bg"
+        android:gravity="center"
+        android:text="咨询客服"
+        android:textColor="@color/white"
+        android:textSize="22dp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white" />
+
+
+    <Button
+        android:id="@+id/id_item_bottom_bar_apply"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_bg"
+        android:gravity="center"
+        android:text="立即申请"
+        android:textColor="@color/white"
+        android:textSize="22dp" />
+
+</LinearLayout>

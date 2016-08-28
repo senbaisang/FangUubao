@@ -10,6 +10,7 @@ import com.sally.fanguubao.bean.FenQiJdCategories;
 import com.sally.fanguubao.bean.FenQiJdProduct;
 import com.sally.fanguubao.bean.FenQiLuxProductDetail;
 import com.sally.fanguubao.bean.FenQiRecommand;
+import com.sally.fanguubao.bean.FenQiRecommandTaoCan;
 import com.sally.fanguubao.bean.FuLiSheProduct;
 
 import java.util.List;
@@ -108,6 +109,16 @@ public class GsonUtil {
     public static List<Address> fenQiLyAddress(String str) {
         List<Address> addresses = new Gson().fromJson(str, new TypeToken<List<Address>>() {}.getType());
         return addresses;
+    }
+
+    /**
+     * 分期 － 精品推荐 － 产品套餐
+     * @param str
+     * @return
+     */
+    public static FenQiRecommandTaoCan fenQiRecommandTaoCan(String str) {
+        FenQiRecommandTaoCan taoCan = new Gson().fromJson(str, new TypeToken<FenQiRecommandTaoCan>(){}.getType());
+        return taoCan;
     }
 
 }

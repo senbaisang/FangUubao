@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id_item_dialog_tv"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:paddingLeft="30dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:text="3-4天"
+    android:textColor="@color/black"
+    android:textSize="18sp" />
+

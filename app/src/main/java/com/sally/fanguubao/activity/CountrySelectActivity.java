@@ -107,7 +107,7 @@ public class CountrySelectActivity extends AppCompatActivity {
             String country = data.getStringExtra("country");
             Intent intent = new Intent();
             intent.putExtra("address", country + " - " + city);
-            setResult(MyDecorateActivity.GET_COUNTRY_RESPONSE_CODE, intent);
+            setResult(Constant.GET_CITY_RESPONSE_CODE, intent);
             finish();
         }
     }

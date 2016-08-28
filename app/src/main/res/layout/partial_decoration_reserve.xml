@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所在区域"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/id_fq_decorate_select_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="点击选择"
+            android:textColor="#333"
+            android:textColorHint="#333"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="房屋类型"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/id_fq_decorate_new_house"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="新房装修"
+                android:textColor="#666" />
+
+            <RadioButton
+                android:id="@+id/id_fq_decorate_old_build"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="老房装修"
+                android:textColor="#666" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="建筑面积"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/id_fq_decorate_house_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="#00000000"
+            android:hint="请输入房本上的建筑面积"
+            android:textColor="#333"
+            android:textColorHint="#666"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始时间"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/id_fq_decorate_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="开始时间"
+            android:textColor="#333"
+            android:textColorHint="#333"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个性选择"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_select_shape"
+                android:button="@null"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="客厅吊顶"
+                android:textColor="#666"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_select_shape"
+                android:button="@null"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="电视背景墙"
+                android:textColor="#666"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_select_shape"
+                android:button="@null"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="浴缸"
+                android:textColor="#666"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我的大致预算"
+            android:textSize="14sp" />
+
+        <SeekBar
+            android:id="@+id/id_fq_decorate_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:max="100"
+            android:progress="30" />
+
+        <TextView
+            android:id="@+id/id_fq_decorate_seek_bar_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$60000"
+            android:textColor="#c99"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/item_bottom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+
+</LinearLayout>

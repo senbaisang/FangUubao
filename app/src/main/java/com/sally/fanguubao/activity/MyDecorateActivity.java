@@ -3,13 +3,16 @@ package com.sally.fanguubao.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.util.Constant;
+import com.sally.fanguubao.util.Utilities;
 
 /**
  * Created by sally on 16/5/29.
@@ -21,13 +24,10 @@ public class MyDecorateActivity extends AppCompatActivity implements View.OnClic
     public static final int GET_CITY_REQUEST_CODE = 0x3;
     public static final int GET_CITY_RESPONSE_CODE = 0x4;
 
-    private TextView mSelectArea;
-    private RadioButton mNewHouse;
-    private RadioButton mOldBuild;
-    private TextView mHouseArea;
-    private TextView mStartDate;
-    private TextView mBudget;
-    private SeekBar mSeekBar;
+    private TextView mTitle;
+    private ImageView mDecorate699;
+    private ImageView mDecorate799;
+    private ImageView mDecorate599;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,65 +39,37 @@ public class MyDecorateActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initView() {
-        mSelectArea = (TextView) findViewById(R.id.id_fq_decorate_select_area);
-        mNewHouse = (RadioButton) findViewById(R.id.id_fq_decorate_new_house);
-        mOldBuild = (RadioButton) findViewById(R.id.id_fq_decorate_old_build);
-        mHouseArea = (TextView) findViewById(R.id.id_fq_decorate_house_area);
-        mStartDate = (TextView) findViewById(R.id.id_fq_decorate_start_date);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
 
-        mBudget = (TextView) findViewById(R.id.id_fq_decorate_seek_bar_text);
-        mSeekBar = (SeekBar) findViewById(R.id.id_fq_decorate_seek_bar);
-        mSeekBar.setMax(100000 - 3000);
-        mBudget.setText(Constant.REN_MIN_BI + 3000);
-
+        mDecorate599 = (ImageView) findViewById(R.id.id_decorate_599);
+        mDecorate699 = (ImageView) findViewById(R.id.id_decorate_699);
+        mDecorate799 = (ImageView) findViewById(R.id.id_decorate_799);
     }
 
     private void initEvent() {
-        mSelectArea.setOnClickListener(this);
-        mNewHouse.setOnClickListener(this);
-        mOldBuild.setOnClickListener(this);
-        mHouseArea.setOnClickListener(this);
-        mStartDate.setOnClickListener(this);
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mBudget.setText(Constant.REN_MIN_BI + (progress + 3000) + "");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
+        mDecorate599.setOnClickListener(this);
+        mDecorate699.setOnClickListener(this);
+        mDecorate799.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(MyDecorateActivity.this, DecorateComboActivity.class);
         switch (v.getId()) {
-            case R.id.id_fq_decorate_select_area:
-                intent.setClass(this, CountrySelectActivity.class);
-                startActivityForResult(intent, GET_COUNTRY_REQUEST_CODE);
+            case R.id.id_decorate_599:
+                intent.putExtra(Constant.RECOMMAND_IV, "53");
+                startActivity(intent);
                 break;
-            case R.id.id_fq_decorate_new_house:
+            case R.id.id_decorate_699:
+                intent.putExtra(Constant.RECOMMAND_IV, "55");
+                startActivity(intent);
                 break;
-            case R.id.id_fq_decorate_old_build:
-                break;
-            case R.id.id_fq_decorate_house_area:
-                break;
-            case R.id.id_fq_decorate_start_date:
+            case R.id.id_decorate_799:
+                intent.putExtra(Constant.RECOMMAND_IV, "57");
+                startActivity(intent);
                 break;
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == MyDecorateActivity.GET_COUNTRY_REQUEST_CODE && resultCode == MyDecorateActivity.GET_COUNTRY_RESPONSE_CODE) {
-            String address = data.getStringExtra("address");
-            mSelectArea.setText(address);
-        }
-    }
 }

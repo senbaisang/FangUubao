@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,12 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
      */
     private List<FuLiSheProduct> mLists;
 
+    /**
+     * top_bar
+     */
+    private TextView mTopBarTitle;
+    private ImageView mTopBarCall;
+
     public FuLiSheFragment() {
         super();
     }
@@ -83,6 +90,11 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
         mDou = (CustomTextView) headerView.findViewById(R.id.id_fls_tv1);
         mGetDou = (CustomTextView) headerView.findViewById(R.id.id_fls_tv2);
         mFuLi = (CustomTextView) headerView.findViewById(R.id.id_fls_tv3);
+
+        mTopBarTitle = (TextView) view.findViewById(R.id.id_item_top_bar_title);
+        mTopBarTitle.setText("福利社");
+        mTopBarCall = (ImageView) view.findViewById(R.id.id_item_top_bar_call);
+        mTopBarCall.setOnClickListener(this);
 
         // 第三个参数，控制headerView是否可以被selected
         mListView.addHeaderView(headerView, null, false);
@@ -140,6 +152,9 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.id_fls_tv3:
                 showMsg("我的福利");
+                break;
+            case R.id.id_item_top_bar_call:
+                showMsg("phone call");
                 break;
         }
     }
