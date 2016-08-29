@@ -77,21 +77,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@drawable/decorate_699" />
 
             <ImageView
                 android:id="@+id/id_decorate_799"
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@drawable/decorate_799" />
 
             <ImageView
                 android:id="@+id/id_decorate_599"
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@drawable/decorate_599" />
 
         </LinearLayout>
     </ScrollView>

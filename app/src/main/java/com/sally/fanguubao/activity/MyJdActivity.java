@@ -28,6 +28,7 @@ import okhttp3.Call;
  */
 public class MyJdActivity extends AppCompatActivity {
 
+    private TextView mTitle;
     private ListView mListView;
     private List<FenQiJdCategories> mLists;
 
@@ -92,6 +93,8 @@ public class MyJdActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mListView = (ListView) findViewById(R.id.id_fq_jd_list_view);
         View headerView = View.inflate(this, R.layout.item_jd_header_view, null);
         mListView.addHeaderView(headerView);

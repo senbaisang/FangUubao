@@ -14,9 +14,13 @@ import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.util.Utilities;
+import com.sally.fanguubao.view.CustomCalculateView;
 
 /**
  * Created by sally on 16/5/29.
@@ -32,6 +36,8 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
     private TextView mLatestLeave;
     private TextView mDayCount;
     private TextView mLodgingLevel;
+    private CustomCalculateView mPersonCount;
+    private CustomCalculateView mChildrenCount;
     private SeekBar mSeekBar;
     private TextView mBudget;
     private TextView mLoan;
@@ -53,6 +59,8 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
         mLatestLeave = (TextView) findViewById(R.id.id_ly_latest_leave);
         mDayCount = (TextView) findViewById(R.id.id_ly_day_count);
         mLodgingLevel = (TextView) findViewById(R.id.id_ly_lodging_level);
+        mPersonCount = (CustomCalculateView) findViewById(R.id.id_ly_person_count);
+        mChildrenCount = (CustomCalculateView) findViewById(R.id.id_ly_children_count);
         mSeekBar = (SeekBar) findViewById(R.id.id_ly_seek_bar);
         mSeekBar.setMax(100000);
         mBudget = (TextView) findViewById(R.id.id_ly_budge);
@@ -93,18 +101,53 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
             }
             break;
             case R.id.id_ly_earliest_leave:
+                Utilities.showCalendar(MyTouristActivity.this, mEarliestLeave);
                 break;
             case R.id.id_ly_latest_leave:
+                Utilities.showCalendar(MyTouristActivity.this, mLatestLeave);
                 break;
-            case R.id.id_ly_day_count: {
+            case R.id.id_ly_day_count:
                 Utilities.showDialog(MyTouristActivity.this, mDayCount, mDays, "请选择您的出行天数");
-            }
-            break;
-            case R.id.id_ly_lodging_level: {
+                break;
+            case R.id.id_ly_lodging_level:
                 Utilities.showDialog(MyTouristActivity.this, mLodgingLevel, mLevels, "请选择您的住宿等级");
-            }
-            break;
+                break;
             case R.id.id_item_btn_loan:
+                if (mDestination.getText().toString().isEmpty()) {
+                    Utilities.showMsg(MyTouristActivity.this, "请选择目的地");
+                    return;
+                }
+                if (mEarliestLeave.getText().toString().isEmpty() || mLatestLeave.getText().toString().isEmpty()) {
+                    Utilities.showMsg(MyTouristActivity.this, "请选择出发时间");
+                    return;
+                }
+                String[] earlistLeave = mEarliestLeave.getText().toString().split("-");
+                String[] latestLeave = mLatestLeave.getText().toString().split("-");
+                if (Integer.parseInt(latestLeave[0]) < Integer.parseInt(earlistLeave[0])) {
+                    Utilities.showMsg(MyTouristActivity.this, "最晚出行时间不能比最早出行时间晚");
+                    return;
+                } else if (Integer.parseInt(latestLeave[0]) == Integer.parseInt(earlistLeave[0])) {
+                    if (Integer.parseInt(latestLeave[1]) < Integer.parseInt(earlistLeave[1])) {
+                        Utilities.showMsg(MyTouristActivity.this, "最晚出行时间不能比最早出行时间晚");
+                        return;
+                    } else if (Integer.parseInt(latestLeave[1]) > Integer.parseInt(earlistLeave[1])) {
+                        if (Integer.parseInt(latestLeave[2]) < Integer.parseInt(earlistLeave[2])) {
+                            Utilities.showMsg(MyTouristActivity.this, "最晚出行时间不能比最早出行时间晚");
+                            return;
+                        }
+                    }
+                }
+                if (mDayCount.getText().toString().isEmpty()) {
+                    Utilities.showMsg(MyTouristActivity.this, "请选择行程天数");
+                    return;
+                }
+                if (mLodgingLevel.getText().toString().isEmpty()) {
+                    Utilities.showMsg(MyTouristActivity.this, "请选择住宿等级");
+                    return;
+                }
+
+                // 我能带多少
+                Utilities.showMsg(MyTouristActivity.this, "budget");
                 break;
         }
     }

@@ -11,6 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.sally.fanguubao.R;
 
 import java.util.HashMap;
@@ -62,7 +65,7 @@ public class Utilities {
     }
 
     /**
-     * dialog， listview展示单行数据
+     * dialog， listview展示单行数据textview
      * @param context
      * @param tv
      * @param mDatas
@@ -84,6 +87,29 @@ public class Utilities {
         });
         dialog.setTitle(title);
         dialog.setView(dialogView);
+        dialog.show();
+    }
+
+    /**
+     * dialog，显示日历表的dialog，首次再我的旅游使用的
+     * @param context
+     * @param tv
+     */
+    public static void showCalendar(Context context, final TextView tv) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = View.inflate(context, R.layout.item_calender_view, null);
+        MaterialCalendarView calendar = (MaterialCalendarView) view.findViewById(R.id.id_item_calender_view);
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        calendar.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(MaterialCalendarView widget, CalendarDay date, boolean selected) {
+                if (selected) {
+                    tv.setText(date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay());
+                    dialog.dismiss();
+                }
+            }
+        });
         dialog.show();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.util.Constant;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 public class MyLuxActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView mTitle;
     private ImageView mBag;
     private ImageView mScarf;
     private ImageView mGlasses;
@@ -49,6 +51,8 @@ public class MyLuxActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_lux);
 
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mBag = (ImageView) findViewById(R.id.id_fq_lux_bag);
         mScarf = (ImageView) findViewById(R.id.id_fq_lux_scarf);
         mGlasses = (ImageView) findViewById(R.id.id_fq_lux_glasses);

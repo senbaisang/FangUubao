@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sally="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_item_calender_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    sally:mcv_selectionColor="@color/greenLight"
+    sally:mcv_showOtherDates="all">
+
+</com.prolificinteractive.materialcalendarview.MaterialCalendarView>

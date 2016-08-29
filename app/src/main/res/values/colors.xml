@@ -8,4 +8,6 @@
     <color name="greenLight">#76EEC6</color>
     <color name="greenDark">#71C671</color>
     <color name="black">#000000</color>
+    <color name="french_gray">#a9b7b7</color>
+    <color name="dark_gray">#759797</color>
 </resources>

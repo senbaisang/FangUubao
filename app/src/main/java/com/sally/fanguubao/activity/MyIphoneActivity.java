@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.adapter.FenQiIphoneAdapter;
@@ -25,6 +26,7 @@ import okhttp3.Call;
  */
 public class MyIphoneActivity extends AppCompatActivity {
 
+    private TextView mTitle;
     private ListView mListView;
     private FenQiIphoneAdapter mFenQiIphoneAdapter;
     private List<FenQiIphoneProduct> mLists;
@@ -40,6 +42,8 @@ public class MyIphoneActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mListView = (ListView) findViewById(R.id.id_iphone_list_view);
 
         View headerView = View.inflate(this, R.layout.item_top_mxfq, null);

@@ -37,6 +37,7 @@ import static com.sally.fanguubao.R.id.id_fq_car_fq_price;
  */
 public class MyCarActivity extends AppCompatActivity {
 
+    private TextView mTitle;
     private ImageView mLogo;
     private TextView mName;
     private TextView mPrice;
@@ -110,6 +111,8 @@ public class MyCarActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mLogo = (ImageView) findViewById(R.id.id_fq_car_logo);
         mName = (TextView) findViewById(R.id.id_fq_car_name);
         mPrice = (TextView) findViewById(R.id.id_fq_car_price);
