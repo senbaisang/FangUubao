@@ -5,7 +5,7 @@
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:id="@+id/id_item_top_bar_decoration_back"
+        android:id="@+id/id_item_top_bar_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="50dp"
         android:layout_toRightOf="@+id/id_item_top_bar_decoration_back"
         android:text="title"
         android:textColor="@color/white"

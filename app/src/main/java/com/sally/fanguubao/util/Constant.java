@@ -65,7 +65,7 @@ public class Constant {
      * url
      */
 
-    public static final String HOST = "http://192.168.1.102:5555/";
+    public static final String HOST = "http://192.168.0.233:5555/";
 //    public static final String HOST = "http://www.uubpay.com/";
 
 

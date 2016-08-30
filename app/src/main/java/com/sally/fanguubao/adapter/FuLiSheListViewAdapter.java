@@ -59,7 +59,7 @@ public class FuLiSheListViewAdapter extends BaseAdapter {
 
         FuLiSheProduct product = mLists.get(position);
         vh.tvName.setText(product.getName());
-        vh.tvDou.setText(product.getScore() + "");
+        vh.tvDou.setText("优豆" + product.getScore() + "粒");
         UrlImageViewHelper.setUrlDrawable(vh.ivLogo, product.getLogo().getUrl(), R.drawable.b);
 
         return convertView;

@@ -8,15 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.sally.fanguubao.MyApplication;
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FuLiSheProduct;
 import com.sally.fanguubao.fragment.FuLiSheFragment;
 import com.sally.fanguubao.bean.ProductImage;
+import com.sally.fanguubao.util.Constant;
+import com.sally.fanguubao.util.Utilities;
 import com.sally.fanguubao.util.XmlPullParseUtil;
 
 import java.util.ArrayList;
@@ -25,7 +29,7 @@ import java.util.List;
 /**
  * Created by sally on 16/5/28.
  */
-public class FuLiSheProductActivity extends AppCompatActivity {
+public class FuLiSheProductActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "FuLiSheProductActivity";
 
     private FuLiSheProduct mFuLiSheProduct;
@@ -50,6 +54,17 @@ public class FuLiSheProductActivity extends AppCompatActivity {
     private TextView mRemainDay;
     private LinearLayout mLlDetails;
 
+    /**
+     * 底部操作按钮
+     */
+    private Button mBuy;
+    private Button mConvert;
+    /**
+     * 顶部的
+     */
+    private TextView mTitle;
+    private ImageView mBack;
+
     private List<ProductImage> mDetails;
 
     @Override
@@ -64,6 +79,7 @@ public class FuLiSheProductActivity extends AppCompatActivity {
     }
 
     private void setData() {
+        mTitle.setText(mFuLiSheProduct.getName());
         mName.setText(mFuLiSheProduct.getName());
         mIntroduce.setText(mFuLiSheProduct.getIntroduce());
         mOriginPrice.setText(mFuLiSheProduct.getO_price() + "");
@@ -86,10 +102,15 @@ public class FuLiSheProductActivity extends AppCompatActivity {
         mLlDetails = (LinearLayout) findViewById(R.id.id_fls_product_details);
         mLlDetails.setOrientation(LinearLayout.VERTICAL);
 
+        mBuy = (Button) findViewById(R.id.id_item_operate_buy);
+        mConvert = (Button) findViewById(R.id.id_item_operate_convert);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
+
         // 构建轮播图
         mPointImages = mFuLiSheProduct.getOneProducts().size();
         mBannerImageViews = new ArrayList<>();
-        for(int i=0; i<mPointImages; i++) {
+        for (int i = 0; i < mPointImages; i++) {
             ImageView pointIv = new ImageView(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             lp.rightMargin = 10;
@@ -97,7 +118,7 @@ public class FuLiSheProductActivity extends AppCompatActivity {
             pointIv.setLayoutParams(lp);
             pointIv.setImageResource(R.drawable.point_selector);
             mPoints.addView(pointIv);
-            if(i == 0) {
+            if (i == 0) {
                 pointIv.setEnabled(true);
             } else {
                 pointIv.setEnabled(false);
@@ -111,8 +132,8 @@ public class FuLiSheProductActivity extends AppCompatActivity {
         /*
          * 商品logo图
          */
-        if(mDetails != null && mDetails.size() > 0) {
-            for(int i=0; i<mDetails.size(); i++) {
+        if (mDetails != null && mDetails.size() > 0) {
+            for (int i = 0; i < mDetails.size(); i++) {
                 ImageView iv = new ImageView(this);
                 UrlImageViewHelper.setUrlDrawable(iv, mDetails.get(i).getSrc(), R.drawable.a);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -164,6 +185,10 @@ public class FuLiSheProductActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        mBuy.setOnClickListener(this);
+        mConvert.setOnClickListener(this);
+        mBack.setOnClickListener(this);
     }
 
     private void initData() {
@@ -175,5 +200,34 @@ public class FuLiSheProductActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_item_operate_buy:
+                if (MyApplication.check_login()) {
+                    Utilities.showMsg(FuLiSheProductActivity.this, "buy");
+                } else {
+                   goToLogin();
+                }
+                break;
+            case R.id.id_item_operate_convert:
+                if (MyApplication.check_login()) {
+                    Utilities.showMsg(FuLiSheProductActivity.this, "convert");
+                } else {
+                    goToLogin();
+                }
+                break;
+            case R.id.id_item_top_bar_back:
+                FuLiSheProductActivity.this.finish();
+                break;
+        }
+    }
+
+    public void goToLogin() {
+        Intent intent = new Intent(FuLiSheProductActivity.this, LoginActivity.class);
+        intent.putExtra(Constant.ACTIVITY_TITLE, "登陆");
+        startActivity(intent);
     }
 }

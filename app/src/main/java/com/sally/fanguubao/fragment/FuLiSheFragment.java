@@ -15,12 +15,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sally.fanguubao.MyApplication;
 import com.sally.fanguubao.R;
+import com.sally.fanguubao.activity.FuLiSheEarnBeanActivity;
 import com.sally.fanguubao.activity.FuLiSheProductActivity;
+import com.sally.fanguubao.activity.LoginActivity;
 import com.sally.fanguubao.adapter.FuLiSheListViewAdapter;
 import com.sally.fanguubao.bean.FuLiSheProduct;
 import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.util.GsonUtil;
+import com.sally.fanguubao.util.Utilities;
 import com.sally.fanguubao.view.CustomTextView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -31,7 +35,7 @@ import okhttp3.Call;
 
 /**
  * listView : addHeaderView()  setOnItemClickListener()
- *
+ * <p/>
  * Created by sally on 16/5/26.
  */
 public class FuLiSheFragment extends Fragment implements View.OnClickListener {
@@ -142,24 +146,36 @@ public class FuLiSheFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_fls_btn_sign:
-                showMsg("签到");
+                clickEvent("签到");
                 break;
             case R.id.id_fls_tv1:
-                showMsg("我的优豆");
+                clickEvent("我的优豆");
                 break;
             case R.id.id_fls_tv2:
-                showMsg("赚取优豆");
+                Intent intent = new Intent(getActivity(), FuLiSheEarnBeanActivity.class);
+                intent.putExtra(Constant.ACTIVITY_TITLE, "赚取优豆");
+                startActivity(intent);
                 break;
             case R.id.id_fls_tv3:
-                showMsg("我的福利");
+                clickEvent("我的福利");
                 break;
             case R.id.id_item_top_bar_call:
-                showMsg("phone call");
+                Utilities.phoneCall(getActivity());
                 break;
         }
     }
 
-    public void showMsg(String text) {
-        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    private void clickEvent(String text) {
+        if (MyApplication.check_login()) {
+            Utilities.showMsg(getActivity(), text);
+        } else {
+            goToLogin();
+        }
+    }
+
+    private void goToLogin() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.putExtra(Constant.ACTIVITY_TITLE, "登陆");
+        startActivity(intent);
     }
 }

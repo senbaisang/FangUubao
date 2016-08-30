@@ -13,6 +13,8 @@ import okhttp3.OkHttpClient;
  */
 public class MyApplication extends Application {
 
+    public static boolean is_login = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -23,6 +25,13 @@ public class MyApplication extends Application {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
+    }
+
+    /**
+     * 是否登陆
+     */
+    public static boolean check_login() {
+        return is_login;
     }
 
 }

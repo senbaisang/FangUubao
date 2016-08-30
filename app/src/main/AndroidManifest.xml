@@ -43,6 +43,10 @@
 
         <activity android:name=".activity.RecommandComboActivity" />
         <activity android:name=".activity.DecorateComboActivity" />
+
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.MyCeoEmailActivity" />
+        <activity android:name=".activity.FuLiSheEarnBeanActivity" />
     </application>
 
 </manifest>

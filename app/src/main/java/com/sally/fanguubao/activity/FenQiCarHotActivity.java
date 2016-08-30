@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,12 +22,15 @@ import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FenQiCarProduct;
 import com.sally.fanguubao.bean.ProductImage;
 import com.sally.fanguubao.util.Constant;
+import com.sally.fanguubao.util.Utilities;
 import com.sally.fanguubao.util.XmlPullParseUtil;
 import com.sally.fanguubao.view.NOScrollGridView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.internal.Util;
 
 /**
  * Created by sally on 16/5/30.
@@ -53,6 +57,15 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
     private TextView mWangYi;
     private TextView mSina;
     private TextView mSouHu;
+
+    /**
+     * 顶部／底部按钮
+     */
+    private ImageView mBack;
+    private TextView mTitle;
+    private Button mShare;
+    private Button mQuery;
+    private Button mApply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +123,15 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
                 point.setEnabled(false);
             }
         }
+
+        /**
+         * 顶／底部按钮
+         */
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mShare = (Button) findViewById(R.id.id_item_bottom_bar_share);
+        mQuery = (Button) findViewById(R.id.id_item_bottom_bar_query);
+        mApply = (Button) findViewById(R.id.id_item_bottom_bar_apply);
     }
 
     private void initEvent() {
@@ -171,7 +193,7 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showMsg(view.getText().toString());
+                    Utilities.showMsg(FenQiCarHotActivity.this, view.getText().toString());
                 }
             });
         }
@@ -179,12 +201,21 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView) view;
-                showMsg(tv.getText().toString());
+                Utilities.showMsg(FenQiCarHotActivity.this, tv.getText().toString());
             }
         });
+
+        /*
+         * 顶／底部按钮
+         */
+        mBack.setOnClickListener(this);
+        mShare.setOnClickListener(this);
+        mQuery.setOnClickListener(this);
+        mApply.setOnClickListener(this);
     }
 
     private void setData() {
+        mTitle.setText(recommand.getName());
         mName.setText(recommand.getName());
         mFactoryPrice.setText("厂家指导价格：" + recommand.getO_price() + " ~ " + recommand.getO_price2());
         mUubPrice.setText("优优宝价格：" + recommand.getPrice());
@@ -259,18 +290,27 @@ public class FenQiCarHotActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_fq_car_hot_wangyi:
-                showMsg("wang yi");
+                Utilities.showMsg(FenQiCarHotActivity.this, "wang yi");
                 break;
             case R.id.id_fq_car_hot_sina:
-                showMsg("sina");
+                Utilities.showMsg(FenQiCarHotActivity.this, "sina");
                 break;
             case R.id.id_fq_car_hot_souhu:
-                showMsg("sou hu");
+                Utilities.showMsg(FenQiCarHotActivity.this, "sou hu");
+                break;
+            case R.id.id_item_top_bar_back:
+                FenQiCarHotActivity.this.finish();
+                break;
+            case R.id.id_item_bottom_bar_share:
+                Utilities.showMsg(FenQiCarHotActivity.this, "分享");
+                break;
+            case R.id.id_item_bottom_bar_query:
+                Utilities.showMsg(FenQiCarHotActivity.this, "咨询");
+                break;
+            case R.id.id_item_bottom_bar_apply:
+                Utilities.showMsg(FenQiCarHotActivity.this, "申请");
                 break;
         }
     }
 
-    public void showMsg(String text) {
-        Toast.makeText(FenQiCarHotActivity.this, text, Toast.LENGTH_SHORT).show();
-    }
 }

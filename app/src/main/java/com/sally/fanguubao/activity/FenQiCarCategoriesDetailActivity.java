@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FenQiCarBrandsProduct;
 import com.sally.fanguubao.bean.FenQiCarProduct;
 import com.sally.fanguubao.util.Constant;
+import com.sally.fanguubao.util.Utilities;
 import com.sally.fanguubao.view.NOScrollGridView;
 
 import org.w3c.dom.Text;
@@ -53,6 +55,17 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
     private FenQiCarBrandsProduct product;
     private List<FenQiCarProduct.CarLogo> carLogos;
     private int carLogoSize;
+
+    /**
+     * 顶／底部按钮
+     *
+     * @param savedInstanceState
+     */
+    private ImageView mBack;
+    private TextView mTitle;
+    private Button mShare;
+    private Button mQuery;
+    private Button mApply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +119,12 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
                 point.setEnabled(false);
             }
         }
+
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mShare = (Button) findViewById(R.id.id_item_bottom_bar_share);
+        mQuery = (Button) findViewById(R.id.id_item_bottom_bar_query);
+        mApply = (Button) findViewById(R.id.id_item_bottom_bar_apply);
     }
 
     private void initEvent() {
@@ -162,13 +181,13 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
         /*
          * 颜色 和 型号 事件
          */
-        for(int i=0; i<mLcolors.getChildCount(); i++) {
+        for (int i = 0; i < mLcolors.getChildCount(); i++) {
             final TextView tv = (TextView) mLcolors.getChildAt(i);
-            Log.e("zhe li de dia", mLcolors.getChildCount() + "" + ((TextView) mLcolors.getChildAt(i)).getText().toString()) ;
+            Log.e("zhe li de dia", mLcolors.getChildCount() + "" + ((TextView) mLcolors.getChildAt(i)).getText().toString());
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showMsg(tv.getText().toString() + "show");
+                    Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, tv.getText().toString() + "show");
                 }
             });
         }
@@ -176,12 +195,21 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView) view;
-                showMsg(tv.getText().toString());
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, tv.getText().toString());
             }
         });
+
+        /**
+         * 顶部／底部按钮
+         */
+        mBack.setOnClickListener(this);
+        mShare.setOnClickListener(this);
+        mQuery.setOnClickListener(this);
+        mApply.setOnClickListener(this);
     }
 
     private void setData() {
+        mTitle.setText(product.getName());
         mName.setText(product.getName());
         mFactotyPrice.setText("厂家指导价格：" + Constant.REN_MIN_BI + product.getO_price() + " ~ " + product.getO_price2() + "万");
         mUubPrice.setText("优优宝价：" + Constant.REN_MIN_BI + product.getPrice() + "万");
@@ -233,18 +261,27 @@ public class FenQiCarCategoriesDetailActivity extends AppCompatActivity implemen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_fq_car_brand_wangyi:
-                showMsg("wang yi");
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, "wang yi");
                 break;
             case R.id.id_fq_car_brand_sina:
-                showMsg("sina");
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, "sina");
                 break;
             case R.id.id_fq_car_brand_souhu:
-                showMsg("sou hu");
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, "sou hu");
+                break;
+            case R.id.id_item_bottom_bar_share:
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, "分享");
+                break;
+            case R.id.id_item_bottom_bar_query:
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, "咨询");
+                break;
+            case R.id.id_item_bottom_bar_apply:
+                Utilities.showMsg(FenQiCarCategoriesDetailActivity.this, "申请");
+                break;
+            case R.id.id_item_top_bar_back:
+                FenQiCarCategoriesDetailActivity.this.finish();
                 break;
         }
     }
 
-    public void showMsg(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
 }

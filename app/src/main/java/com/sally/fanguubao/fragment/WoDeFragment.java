@@ -7,10 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.activity.FaqActivity;
+import com.sally.fanguubao.activity.LoginActivity;
+import com.sally.fanguubao.activity.MyCeoEmailActivity;
+import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.view.CustomWoDeItemView;
 
 /**
@@ -18,6 +23,8 @@ import com.sally.fanguubao.view.CustomWoDeItemView;
  */
 public class WoDeFragment extends Fragment implements View.OnClickListener {
 
+    private ImageView mAvatar;
+    private TextView mLogin;
     private CustomWoDeItemView mFaq;
     private CustomWoDeItemView mCeo;
     private CustomWoDeItemView mShare;
@@ -39,6 +46,8 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+        mAvatar = (ImageView) view.findViewById(R.id.id_wd_avatar);
+        mLogin = (TextView) view.findViewById(R.id.id_wd_login);
         mFaq = (CustomWoDeItemView) view.findViewById(R.id.id_wd_faq);
         mCeo = (CustomWoDeItemView) view.findViewById(R.id.id_wd_ceo);
         mShare = (CustomWoDeItemView) view.findViewById(R.id.id_wd_share);
@@ -49,6 +58,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
 
 
     private void initEvent() {
+        mLogin.setOnClickListener(this);
         mFaq.setOnClickListener(this);
         mCeo.setOnClickListener(this);
         mShare.setOnClickListener(this);
@@ -60,12 +70,22 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_wd_faq:
+            case R.id.id_wd_login: {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.putExtra(Constant.ACTIVITY_TITLE, "登陆");
+                startActivity(intent);
+            }
+            break;
+            case R.id.id_wd_faq: {
                 Intent intent = new Intent(getActivity(), FaqActivity.class);
                 getActivity().startActivity(intent);
-                break;
-            case R.id.id_wd_ceo:
-                showMsg("CEO信箱");
+            }
+            break;
+            case R.id.id_wd_ceo: {
+                Intent intent = new Intent(getActivity(), MyCeoEmailActivity.class);
+                intent.putExtra(Constant.ACTIVITY_TITLE, "CEO信箱");
+                startActivity(intent);
+            }
                 break;
             case R.id.id_wd_share:
                 showMsg("推荐给好友");

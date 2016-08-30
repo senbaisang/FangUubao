@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_top_bar_common" />
+
+    <EditText
+        android:id="@+id/id_ceo_email_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="真实姓名" />
+
+    <EditText
+        android:id="@+id/id_ceo_email_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="电子邮件地址或手机号" />
+
+    <EditText
+        android:id="@+id/id_ceo_email_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="大声说出想对优优宝CEO说的话"
+        android:lines="8"
+        android:gravity="top"/>
+
+    <Button
+        android:id="@+id/id_ceo_email_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_solid_shape"
+        android:text="提交"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>
