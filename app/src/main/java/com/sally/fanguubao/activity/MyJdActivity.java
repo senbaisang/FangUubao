@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -26,8 +27,9 @@ import okhttp3.Call;
 /**
  * Created by sally on 16/5/29.
  */
-public class MyJdActivity extends AppCompatActivity {
+public class MyJdActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ImageView mBack;
     private TextView mTitle;
     private ListView mListView;
     private List<FenQiJdCategories> mLists;
@@ -43,6 +45,7 @@ public class MyJdActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(this);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -93,10 +96,20 @@ public class MyJdActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
         mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mListView = (ListView) findViewById(R.id.id_fq_jd_list_view);
         View headerView = View.inflate(this, R.layout.item_jd_header_view, null);
         mListView.addHeaderView(headerView);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_item_top_bar_back:
+                MyJdActivity.this.finish();
+                break;
+        }
     }
 }

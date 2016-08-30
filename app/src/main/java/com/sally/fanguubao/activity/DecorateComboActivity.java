@@ -76,7 +76,7 @@ public class DecorateComboActivity extends AppCompatActivity implements View.OnC
                     e.printStackTrace();
                 }
 
-                for(ProductImage image : mProductImgs) {
+                for (ProductImage image : mProductImgs) {
                     ImageView iv = new ImageView(DecorateComboActivity.this);
                     iv.setScaleType(ImageView.ScaleType.FIT_XY);
                     UrlImageViewHelper.setUrlDrawable(iv, image.getSrc());
@@ -98,20 +98,24 @@ public class DecorateComboActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_item_top_bar_decoration_back:
-                Utilities.showMsg(DecorateComboActivity.this, "back");
+                DecorateComboActivity.this.finish();
                 break;
             case R.id.id_item_top_bar_decoration_another:
-                Utilities.showMsg(DecorateComboActivity.this, "another");
+                showMsg("another");
                 break;
             case R.id.id_item_bottom_bar_share:
-                Utilities.showMsg(DecorateComboActivity.this, "share");
+                showMsg("share");
                 break;
             case R.id.id_item_bottom_bar_query:
-                Utilities.showMsg(DecorateComboActivity.this, "query");
+                showMsg("query");
                 break;
             case R.id.id_item_bottom_bar_apply:
-                Utilities.showMsg(DecorateComboActivity.this, "apply");
+                showMsg("apply");
                 break;
         }
+    }
+
+    private void showMsg(String text) {
+        Utilities.showMsg(DecorateComboActivity.this, text);
     }
 }

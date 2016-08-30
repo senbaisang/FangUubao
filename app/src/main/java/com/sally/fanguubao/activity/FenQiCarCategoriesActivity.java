@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.adapter.FenQiICarBrandsAdapter;
@@ -27,6 +29,8 @@ import okhttp3.Call;
  */
 public class FenQiCarCategoriesActivity extends AppCompatActivity {
 
+    private ImageView mBack;
+    private TextView mTitle;
     private ListView mListView;
     private List<FenQiCarBrandsProduct> mLists;
     private FenQiICarBrandsAdapter mAdapter;
@@ -36,12 +40,16 @@ public class FenQiCarCategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fenqi_car_catetories);
 
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mListView = (ListView) findViewById(R.id.id_fq_car_categories_lv);
         initData();
         initEvent();
     }
 
     private void initData() {
+        String productName = getIntent().getStringExtra(Constant.FENQI_CAR_BRAND_PRODUCT_NAME);
+        mTitle.setText(productName);
         String productId = getIntent().getStringExtra(Constant.FENQI_CAR_BRAND_PRODUCT_ID);
         OkHttpUtils.get().url(Constant.DEBUG_FENQI_CAR_BRAND_PRODUCT + productId).build().execute(new StringCallback() {
             @Override
@@ -58,6 +66,12 @@ public class FenQiCarCategoriesActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FenQiCarCategoriesActivity.this.finish();
+            }
+        });
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

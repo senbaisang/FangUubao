@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/item_top_bar_common" />
+
     <ListView
         android:id="@+id/id_fq_car_categories_lv"
         android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,8 +25,9 @@ import okhttp3.Call;
 /**
  * Created by sally on 16/5/29.
  */
-public class MyIphoneActivity extends AppCompatActivity {
+public class MyIphoneActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ImageView mBack;
     private TextView mTitle;
     private ListView mListView;
     private FenQiIphoneAdapter mFenQiIphoneAdapter;
@@ -42,6 +44,7 @@ public class MyIphoneActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
         mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mListView = (ListView) findViewById(R.id.id_iphone_list_view);
@@ -66,6 +69,7 @@ public class MyIphoneActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(this);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,5 +80,14 @@ public class MyIphoneActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_item_top_bar_back:
+                MyIphoneActivity.this.finish();
+                break;
+        }
     }
 }

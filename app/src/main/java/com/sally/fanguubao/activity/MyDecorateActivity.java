@@ -24,6 +24,7 @@ public class MyDecorateActivity extends AppCompatActivity implements View.OnClic
     public static final int GET_CITY_REQUEST_CODE = 0x3;
     public static final int GET_CITY_RESPONSE_CODE = 0x4;
 
+    private ImageView mBack;
     private TextView mTitle;
     private ImageView mDecorate699;
     private ImageView mDecorate799;
@@ -39,6 +40,7 @@ public class MyDecorateActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
         mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
 
@@ -48,6 +50,7 @@ public class MyDecorateActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(this);
         mDecorate599.setOnClickListener(this);
         mDecorate699.setOnClickListener(this);
         mDecorate799.setOnClickListener(this);
@@ -68,6 +71,9 @@ public class MyDecorateActivity extends AppCompatActivity implements View.OnClic
             case R.id.id_decorate_799:
                 intent.putExtra(Constant.RECOMMAND_IV, "57");
                 startActivity(intent);
+                break;
+            case R.id.id_item_top_bar_back:
+                MyDecorateActivity.this.finish();
                 break;
         }
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
@@ -30,6 +31,7 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
     private String[] mDays = {"4~6天", "7~9天", "10～12天", "13～15天", "15天以上"};
     private String[] mLevels = {"三星级", "四星级", "五星级"};
 
+    private ImageView mBack;
     private TextView mTitle;
     private TextView mDestination;
     private TextView mEarliestLeave;
@@ -51,6 +53,7 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
         mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
 
@@ -66,6 +69,7 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
         mBudget = (TextView) findViewById(R.id.id_ly_budge);
         mLoan = (TextView) findViewById(R.id.id_item_btn_loan);
 
+        mBack.setOnClickListener(this);
         mDestination.setOnClickListener(this);
         mEarliestLeave.setOnClickListener(this);
         mLatestLeave.setOnClickListener(this);
@@ -95,6 +99,9 @@ public class MyTouristActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.id_item_top_bar_back:
+                MyTouristActivity.this.finish();
+                break;
             case R.id.id_ly_destination: {
                 Intent intent = new Intent(MyTouristActivity.this, CountrySelectActivity.class);
                 startActivityForResult(intent, Constant.SELECT_COUNTRY);

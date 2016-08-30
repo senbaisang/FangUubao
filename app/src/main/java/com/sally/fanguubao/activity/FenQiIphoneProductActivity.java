@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.sally.fanguubao.R;
 import com.sally.fanguubao.bean.FenQiIphoneProduct;
 import com.sally.fanguubao.util.Constant;
 import com.sally.fanguubao.bean.ProductImage;
+import com.sally.fanguubao.util.Utilities;
 import com.sally.fanguubao.util.XmlPullParseUtil;
 
 import java.text.DecimalFormat;
@@ -28,7 +30,7 @@ import java.util.List;
 /**
  * Created by sally on 16/5/30.
  */
-public class FenQiIphoneProductActivity extends AppCompatActivity {
+public class FenQiIphoneProductActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * 顶部轮播图变量
@@ -38,6 +40,15 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
     private List<ImageView> mPointsImageViews;
     private int mPointSize;
     private int lastPosition;
+
+    /**
+     * 顶部／底部按钮
+     */
+    private ImageView mBack;
+    private TextView mTitle;
+    private Button mShare;
+    private Button mQuery;
+    private Button mApply;
 
     private TextView mTvName;
     private TextView mTvPrice;
@@ -66,6 +77,7 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
     }
 
     private void setData() {
+        mTitle.setText(product.getName());
         mTvName.setText(product.getName());
         mTvPrice.setText("原价：" + Constant.REN_MIN_BI + product.getPrice() + "");
         mTvFqPrice.setText(new DecimalFormat("#.##").format(product.getPrice() / 12));
@@ -73,6 +85,12 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mShare = (Button) findViewById(R.id.id_item_bottom_bar_share);
+        mQuery = (Button) findViewById(R.id.id_item_bottom_bar_query);
+        mApply = (Button) findViewById(R.id.id_item_bottom_bar_apply);
+
         mTvName = (TextView) findViewById(R.id.id_fenqi_iphone_product_name);
         mTvPrice = (TextView) findViewById(R.id.id_fenqi_iphone_product_price);
         mTvFqPrice = (TextView) findViewById(R.id.id_fenqi_iphone_product_fq_price);
@@ -91,7 +109,7 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
          * 创建顶部轮播图
          */
         mPointsImageViews = new ArrayList<>();
-        for(int i=0; i<mPointSize; i++) {
+        for (int i = 0; i < mPointSize; i++) {
             ImageView imageView = new ImageView(this);
             UrlImageViewHelper.setUrlDrawable(imageView, product.getProduct_logos().get(i).getLogo().getUrl(), R.drawable.d);
             mPointsImageViews.add(imageView);
@@ -103,7 +121,7 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
             point.setLayoutParams(lp);
             point.setImageResource(R.drawable.point_selector);
             mPoints.addView(point);
-            if(i == 0) {
+            if (i == 0) {
                 point.setEnabled(true);
             } else {
                 point.setEnabled(false);
@@ -113,11 +131,11 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
         /*
          * 判断该商品是否有color 和 model，决定布局文件的显示
          */
-        if(colors.length <= 0) {
+        if (colors.length <= 0) {
             mTvColor.setVisibility(View.GONE);
             mLlColor.setVisibility(View.GONE);
         } else {
-            for(int i=0; i<colors.length; i++) {
+            for (int i = 0; i < colors.length; i++) {
                 TextView tv = new TextView(this);
                 tv.setText(colors[i]);
                 tv.setBackground(getResources().getDrawable(R.drawable.btn_select_shape));
@@ -131,11 +149,11 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
             }
         }
 
-        if(models.length <=0 ) {
+        if (models.length <= 0) {
             mTvModel.setVisibility(View.GONE);
             mLlModel.setVisibility(View.GONE);
         } else {
-            for(int i=0; i<models.length; i++) {
+            for (int i = 0; i < models.length; i++) {
                 TextView tv = new TextView(this);
                 tv.setText(models[i].split(":")[0]);
                 tv.setHint(models[i].split(":")[1]);
@@ -153,7 +171,7 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
         /*
          * 为该商品动态添加广告图
          */
-        for(int i=0; i<detailsUrl.size(); i++) {
+        for (int i = 0; i < detailsUrl.size(); i++) {
             ImageView iv = new ImageView(this);
             UrlImageViewHelper.setUrlDrawable(iv, detailsUrl.get(i).getSrc(), R.drawable.d);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -175,6 +193,11 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(this);
+        mShare.setOnClickListener(this);
+        mQuery.setOnClickListener(this);
+        mApply.setOnClickListener(this);
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -220,7 +243,7 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
         /*
          * 颜色 和 型号 的点击事件
          */
-        for(int i=0; i<mLlColor.getChildCount(); i++) {
+        for (int i = 0; i < mLlColor.getChildCount(); i++) {
             final TextView view = (TextView) mLlColor.getChildAt(i);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -229,16 +252,38 @@ public class FenQiIphoneProductActivity extends AppCompatActivity {
                 }
             });
         }
-        for(int i=0; i<mLlModel.getChildCount(); i++) {
+        for (int i = 0; i < mLlModel.getChildCount(); i++) {
             final TextView view = (TextView) mLlModel.getChildAt(i);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String value = view.getHint().toString();
                     mTvPrice.setText("原价：" + Constant.REN_MIN_BI + value);
-                    mTvFqPrice.setText(new DecimalFormat("#.##").format(Integer.valueOf(value)/12) + "");
+                    mTvFqPrice.setText(new DecimalFormat("#.##").format(Integer.valueOf(value) / 12) + "");
                 }
             });
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_item_top_bar_back:
+                FenQiIphoneProductActivity.this.finish();
+                break;
+            case R.id.id_item_bottom_bar_share:
+                showMsg("分享");
+                break;
+            case R.id.id_item_bottom_bar_query:
+                showMsg("咨询");
+                break;
+            case R.id.id_item_bottom_bar_apply:
+                showMsg("申请");
+                break;
+        }
+    }
+
+    private void showMsg(String text) {
+        Utilities.showMsg(FenQiIphoneProductActivity.this, text);
     }
 }

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sally.fanguubao.R;
 import com.sally.fanguubao.adapter.FenQiIphoneAdapter;
@@ -27,6 +29,8 @@ import okhttp3.Call;
  */
 public class MyMoreActivity extends AppCompatActivity {
 
+    private ImageView mBack;
+    private TextView mTitle;
     private ListView mListView;
     private FenQiIphoneAdapter mAdapter;
 
@@ -43,6 +47,9 @@ public class MyMoreActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
+        mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
+        mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mListView = (ListView) findViewById(R.id.id_fenqi_more_product_list_view);
         View headerView = View.inflate(this, R.layout.item_top_mxfq, null);
         mListView.addHeaderView(headerView);
@@ -64,6 +71,12 @@ public class MyMoreActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyMoreActivity.this.finish();
+            }
+        });
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -5,6 +5,8 @@ package com.sally.fanguubao.util;
  */
 public class Constant {
 
+    public static final String APP_ID = "wxeb1a42163be40448";
+
     public static final int BANNER_MAX_VALUE = 1000;
 
     public static final String REN_MIN_BI = "¥";
@@ -29,6 +31,7 @@ public class Constant {
     public static final String FENQI_CAR_HOT_PRODUCT = "fenqi_car_hot_product";
 
     public static final String FENQI_CAR_BRAND_PRODUCT_ID = "fenqi_car_brand_product_id";
+    public static final String FENQI_CAR_BRAND_PRODUCT_NAME = "fenqi_car_brand_product_name";
 
     public static final String FENQI_CAR_BRAND_PRODUCT_DETAIL_BUNDLE = "fenqi_car_brand_product_detail_bundle";
     public static final String FENQI_CAR_BRAND_PRODUCT_DETAIL_DESC = "fenqi_car_brand_product_detail_desc";
@@ -65,7 +68,7 @@ public class Constant {
      * url
      */
 
-    public static final String HOST = "http://192.168.0.233:5555/";
+    public static final String HOST = "http://192.168.1.103:5555/";
 //    public static final String HOST = "http://www.uubpay.com/";
 
 

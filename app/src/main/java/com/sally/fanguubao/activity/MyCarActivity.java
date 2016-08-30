@@ -28,6 +28,7 @@ import java.util.List;
 
 import okhttp3.Call;
 
+import static com.sally.fanguubao.R.id.contentPanel;
 import static com.sally.fanguubao.R.id.id_fq_car_fq_price;
 
 /**
@@ -35,8 +36,9 @@ import static com.sally.fanguubao.R.id.id_fq_car_fq_price;
  *
  * Created by sally on 16/5/29.
  */
-public class MyCarActivity extends AppCompatActivity {
+public class MyCarActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ImageView mBack;
     private TextView mTitle;
     private ImageView mLogo;
     private TextView mName;
@@ -111,6 +113,7 @@ public class MyCarActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
         mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mLogo = (ImageView) findViewById(R.id.id_fq_car_logo);
@@ -122,6 +125,7 @@ public class MyCarActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(this);
         /*
          * 热销车辆点击事件
          */
@@ -144,8 +148,18 @@ public class MyCarActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MyCarActivity.this, FenQiCarCategoriesActivity.class);
                 intent.putExtra(Constant.FENQI_CAR_BRAND_PRODUCT_ID, String.valueOf(brands.get(position).getId()));
+                intent.putExtra(Constant.FENQI_CAR_BRAND_PRODUCT_NAME, brands.get(position).getName());
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_item_top_bar_back:
+                MyCarActivity.this.finish();
+                break;
+        }
     }
 }

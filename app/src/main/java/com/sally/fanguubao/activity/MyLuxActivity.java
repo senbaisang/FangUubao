@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class MyLuxActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ImageView mBack;
     private TextView mTitle;
     private ImageView mBag;
     private ImageView mScarf;
@@ -51,6 +52,7 @@ public class MyLuxActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_lux);
 
+        mBack = (ImageView) findViewById(R.id.id_item_top_bar_back);
         mTitle = (TextView) findViewById(R.id.id_item_top_bar_title);
         mTitle.setText(getIntent().getStringExtra(Constant.ACTIVITY_TITLE));
         mBag = (ImageView) findViewById(R.id.id_fq_lux_bag);
@@ -74,6 +76,7 @@ public class MyLuxActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initEvent() {
+        mBack.setOnClickListener(this);
         mBag.setOnClickListener(this);
         mScarf.setOnClickListener(this);
         mGlasses.setOnClickListener(this);
@@ -101,6 +104,9 @@ public class MyLuxActivity extends AppCompatActivity implements View.OnClickList
                 bundle.putString(Constant.FENQI_LUX_CATEGORY, mGlassesCategory);
                 intent.putExtra(Constant.FENQI_LUX_BUNDLE, bundle);
                 startActivity(intent);
+                break;
+            case R.id.id_item_top_bar_back:
+                MyLuxActivity.this.finish();
                 break;
         }
     }

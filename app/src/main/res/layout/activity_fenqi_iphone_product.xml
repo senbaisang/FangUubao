@@ -4,136 +4,150 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
+    <include layout="@layout/item_top_bar_common" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#eee"
-            android:orientation="vertical">
-
-           <include layout="@layout/item_good_banner_image" />
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#fff"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="match_parent"
+                android:background="#eee"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/id_fenqi_iphone_product_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="iphone 6s 国行正品"
-                    android:textColor="#333"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/id_fenqi_iphone_product_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="¥ 6888"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
+                <include layout="@layout/item_good_banner_image" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:background="#fff"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/id_fenqi_iphone_product_name"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="分期价 ¥"
+                        android:text="iphone 6s 国行正品"
+                        android:textColor="#333"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/id_fenqi_iphone_product_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="¥ 6888"
                         android:textColor="#666"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/id_fenqi_iphone_product_fq_price"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="440.67"
-                        android:textColor="#595"
-                        android:textSize="14sp" />
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="分期价 ¥"
+                            android:textColor="#666"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/id_fenqi_iphone_product_fq_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="440.67"
+                            android:textColor="#595"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" * 12月"
+                            android:textColor="#666"
+                            android:textSize="14sp" />
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/id_fenqi_iphone_product_remark"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" * 12月"
+                        android:layout_marginTop="10dp"
+                        android:text="购机免费赠送一年随屏保，悠悠宝为您的爱机增加益虫保证，保额1000元，面额配100元，手机使用过程中，如果怎么样，就会怎么压都浪费。"
                         android:textColor="#666"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#999" />
+
+                    <TextView
+                        android:id="@+id/id_fenqi_iphone_product_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="颜色:"
+                        android:textColor="#333"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/id_fenqi_iphone_product_color_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <TextView
+                        android:id="@+id/id_fenqi_iphone_product_model"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="型号:"
+                        android:textColor="#333"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/id_fenqi_iphone_product_model_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"></LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/id_fenqi_iphone_product_remark"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="购机免费赠送一年随屏保，悠悠宝为您的爱机增加益虫保证，保额1000元，面额配100元，手机使用过程中，如果怎么样，就会怎么压都浪费。"
-                    android:textColor="#666"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#999" />
-
-                <TextView
-                    android:id="@+id/id_fenqi_iphone_product_color"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="颜色:"
-                    android:textColor="#333"
-                    android:textSize="18sp" />
-
                 <LinearLayout
-                    android:id="@+id/id_fenqi_iphone_product_color_layout"
+                    android:id="@+id/id_fenqi_iphone_product_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:layout_marginTop="10sp"
+                    android:background="#fff"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/id_fenqi_iphone_product_model"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="型号:"
-                    android:textColor="#333"
-                    android:textSize="18sp" />
-
-                <LinearLayout
-                    android:id="@+id/id_fenqi_iphone_product_model_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"></LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="商品详情"
+                        android:textColor="#666"
+                        android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/id_fenqi_iphone_product_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:background="#fff"
-                android:padding="10dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="商品详情"
-                    android:textSize="18sp"
-                    android:textColor="#666"/>
-            </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
 
-    </ScrollView>
+        <include
+            layout="@layout/item_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
 </LinearLayout>
